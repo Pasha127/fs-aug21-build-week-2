@@ -86,29 +86,34 @@
 .nextTrackBtn{
     transform: translate(60px, 8px);
     font-size: 13pt;
+    cursor: pointer;
 }
 .backTrackBtn{
     transform: translate(-60px, 8px);
     font-size: 13pt;
+    cursor: pointer;
 }
 .repeatBtn{
     transform: translate(100px, 12px);    
-    font-size: 8pt;    
+    font-size: 8pt; 
+    cursor: pointer;   
 }
 .shuffleBtn{
     transform: translate(-100px, 12px);    
     font-size: 8pt; 
+    cursor: pointer;
     
 }
 .playerButtons .playBtn{
     font-size: 25pt;
     transform: translate(-10px, 0px);
-    
+    cursor: pointer;
 }
 .playerButtons.pauseBtn{
     transform: translate(-10px, 0px);
     bottom: 100px;
-    font-size: 25pt;        
+    font-size: 25pt;
+    cursor: pointer;        
 }
 .playerTimes{
     color: #ebebeb;
@@ -148,10 +153,48 @@ transform: translate(calc(-40vw), -30px);
 .albumInfoArtist{
     font-size: 8pt;
     color: #ebebeb;
+    margin-bottom: 0;
+    
+}
+.albumInfoLike{
+    font-size: 15pt;
+    color: #ebebeb;
     
 }
 .albumInfoTitle{
 margin-bottom: 4px;
+}
+.volumeContainer{
+    background-color: var(--spotify-progress-gray-back);
+    position: absolute;
+    display: flex;
+    height: 6px;
+    width: 10vw;
+    bottom: 25px;
+    border-radius: 4px;
+    justify-content: left;
+    transform: translate(63vw, 25px);
+
+}
+
+@media(min-width: 600px){
+    .fa-volume-off{
+        color: #ebebeb;
+        position: absolute;
+            transform: translate(-30px, -5px);
+        }
+}
+@media(max-width: 599px){
+    .fa-volume-off{display: none;}
+    
+}
+.volumeBarFront{
+    background-color: var(--spotify-progress-gray-front);
+    position: absolute;
+    height: 6px;
+    width: 2vw;
+    bottom: 0px;
+    border-radius: 4px;
 }
 
 @media(min-width: 1400px){
