@@ -1,8 +1,11 @@
 :root{
     --spotify-dark-gray: #121212;
     --spotify-light-gray: #181818;
+    --spotify-progress-gray-back: #555555;
+    --spotify-progress-gray-front: #b2b2b2;
     --spotify-dark-red: #3f0706;
     --spotify-album-purple: #a73b87;
+
 }
 .main-container{
 
@@ -29,6 +32,29 @@
 .songs-container{
 
 }
+.fa-solid{
+    position: absolute;
+}
+.progressBarBack{
+    background-color: var(--spotify-progress-gray-back);
+    position: absolute;
+    display: flex;
+    height: 6px;
+    width: 50vw;
+    bottom: 25px;
+    border-radius: 4px;
+    justify-content: left;
+
+}
+.progressBarFront{
+    background-color: var(--spotify-progress-gray-front);
+    position: absolute;
+    height: 6px;
+    width: 10vw;
+    bottom: 0px;
+    border-radius: 4px;
+
+}
   
 .trackbar{
     position: fixed;
@@ -50,14 +76,98 @@
 .songs-container{
     
 }
-.playBtn{
+.playerButtons{
     position: absolute;
-    font-size: 25pt;
-    top: 0px;    
+    color: #ebebeb;
+    font-size: 13pt;
+    bottom: 80px;
+    
 }
-.pauseBtn{
-    position: absolute;
-    font-size: 25pt;
-    top: -20px;    
+.nextTrackBtn{
+    transform: translate(60px, 8px);
+    font-size: 13pt;
 }
-   
+.backTrackBtn{
+    transform: translate(-60px, 8px);
+    font-size: 13pt;
+}
+.repeatBtn{
+    transform: translate(100px, 12px);    
+    font-size: 8pt;    
+}
+.shuffleBtn{
+    transform: translate(-100px, 12px);    
+    font-size: 8pt; 
+    
+}
+.playerButtons .playBtn{
+    font-size: 25pt;
+    transform: translate(-10px, 0px);
+    
+}
+.playerButtons.pauseBtn{
+    transform: translate(-10px, 0px);
+    bottom: 100px;
+    font-size: 25pt;
+    
+     
+}
+  /*  ~~~~~~~~~~ */
+   .full{
+    max-width: 100% ;
+}
+
+
+.logo {
+    padding-block: 20px;
+}
+
+.side{
+    background-color: black;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+}
+
+.side span{
+    color: #ebebeb;
+    align-self: center;
+    padding-inline: 15px;
+
+}
+.line{
+    height: 1px;
+    background-color: gray;
+    width: 70%;
+    margin-left: 20px;
+}
+.heart{
+    height: 40px;
+    width: 40px;
+    justify-content: center;
+    background: linear-gradient(90deg, rgba(74,18,241,1) 0%, rgba(191,229,214,1) 100%);
+}
+a{
+    color: gray;
+}
+.songs{
+    height: 40vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+.songs::-webkit-scrollbar{
+   width: 10px;
+   background-color: transparent;
+
+}
+
+.songs::-webkit-scrollbar-thumb{
+    background-color: gray;
+    
+}
+
+.songs::-webkit-scrollbar-thumb:hover{
+    background-color: rgb(228, 224, 224);
+}
