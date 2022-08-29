@@ -108,9 +108,37 @@
 .playerButtons.pauseBtn{
     transform: translate(-10px, 0px);
     bottom: 100px;
-    font-size: 25pt;
+    font-size: 25pt;        
+}
+.playerTimes{
+    color: #ebebeb;
     
-     
+    display: flex;
+    position: absolute;
+    transform: translate(25vw, 0px);
+}
+.elapsedTime{
+    position: absolute;
+    transform: translate(calc(-27vw - 28px), -10px);
+    
+} 
+
+.remainingTime{
+    transform: translate(26vw, -10px);
+
+}
+.playerArt{
+    display: block;
+    position: absolute;
+    height: 80px;
+    width: 90px;
+    transform: translate(calc(-45vw - 40px), -40px);
+}
+@media (max-width: 820px)  {
+    
+    .playerArt{
+        display: none;
+    }
 }
   /*  ~~~~~~~~~~ */
    .full{
