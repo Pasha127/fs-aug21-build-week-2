@@ -1,3 +1,9 @@
+:root{
+    --spotify-dark-gray: #121212;
+    --spotify-light-gray: #181818;
+    --spotify-dark-red: #3f0706;
+    --spotify-album-purple: #a73b87;
+}
 .main-container{
 
 }
@@ -25,7 +31,12 @@
 }
   
 .trackbar{
-
+    position: fixed;
+    
+    width: 100vw;
+    height: 100px;
+    background-color: var(--spotify-light-gray);    
+    top:calc(100vh - 100px);
 }
 .small-album-container{
     
@@ -38,5 +49,15 @@
 }
 .songs-container{
     
+}
+.playBtn{
+    position: absolute;
+    font-size: 25pt;
+    top: 0px;    
+}
+.pauseBtn{
+    position: absolute;
+    font-size: 25pt;
+    top: -20px;    
 }
    
