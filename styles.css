@@ -43,9 +43,15 @@ cursor: pointer;
     transform: translate(150%,90%);
     border-left: 15px solid rgb(0, 0, 0);
 } 
-.nav-container{
-
+.nav-container{}
+.navLimiter{
+    flex-shrink: 0;
+    max-width: 20%;
 }
+.sideRec{
+    cursor: pointer;
+}
+
 .searchFieldContainer{
     
     background-color: white;
@@ -54,6 +60,9 @@ cursor: pointer;
 }
 .searchField{
     border: none;
+}
+.searchField:focus{
+    outline: none;
 }
 .searchFieldContainer svg{
     fill: black;
