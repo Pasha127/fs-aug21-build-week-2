@@ -8,6 +8,12 @@
     --spotify-green: #1fdf64;
 
 }
+body{
+    overflow-x: hidden;
+}
+.searchBtn{
+    cursor: pointer;
+}
 .main-container{
     color: #ebebeb;;
     background: rgb(63,7,6);
@@ -291,7 +297,12 @@ margin-bottom: 4px;
     position: sticky;
     top: 0;
 }
-
+.spinnerContainer{
+    position: absolute;
+    width: 100vw;
+    top: 50vh;
+    left: 50vw;
+}
 .side span{
     color: #ebebeb;
     align-self: center;

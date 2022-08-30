@@ -21,6 +21,7 @@ const rickRoll = new Audio("./rick-astley-never-gonna-give-you-up.mp3");
 const searchField  = document.querySelector(".searchField");
 const searchFieldContainer = document.querySelector(".searchFieldContainer");
 const searchBtn = document.querySelector(".searchBtn");
+const header01 = document.querySelectorAll(".section-header")[0];
 const playMusic = () => {
     queenSong.play();
 }
@@ -43,6 +44,11 @@ const showHideSearch = () =>{
     if(!searchField.classList.contains("d-none")){
         searchField.focus();
     }
+    
+}
+const changeHeader = (newText)=>{
+    header01.innerText = newText;
+
 }
 
 const enterSearch = (e)=>{
@@ -51,8 +57,12 @@ const enterSearch = (e)=>{
         showHideSearch()
         loadTracks(searchField.value)
     }
+    changeHeader("Search Results");
 }
-
+const linkSearch = (e)=>{
+    changeHeader(e.target.innerText);
+    loadTracks(e.target.innerText);
+}
 
 //clamp cards:
 //var module = document.getElementById("clamp-this-module");
@@ -73,8 +83,11 @@ const loadTracks = (input) => {
     .then(response => response.json())
     .then(response => makeCards(response))
     .catch(err => console.error(err)); 
+    
+    
 }
 const makeCards = function (r) {
+    document.querySelector(".spinnerContainer").classList.add("d-none");
     const oldCards = document.querySelectorAll(".cardBack");
     for(card of oldCards){card.remove()};
     console.log(r);   
@@ -111,7 +124,7 @@ window.onload = () => {
     searchBtn.addEventListener("click", showHideSearch);
     searchField.addEventListener("keypress", enterSearch);
     loadTracks("queen");
-    for(link of sideRecs){link.addEventListener("click", (e)=>{loadTracks(e.target.innerText)})}
+    for(link of sideRecs){link.addEventListener("click", (e)=>{linkSearch(e)})}
 
 }
 
