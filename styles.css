@@ -46,7 +46,7 @@ cursor: pointer;
 .nav-container{}
 .navLimiter{
     flex-shrink: 0;
-    max-width: 20%;
+    max-width: 16%;
 }
 .sideRec{
     cursor: pointer;
