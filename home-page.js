@@ -22,6 +22,15 @@ const searchField  = document.querySelector(".searchField");
 const searchFieldContainer = document.querySelector(".searchFieldContainer");
 const searchBtn = document.querySelector(".searchBtn");
 const header01 = document.querySelectorAll(".section-header")[0];
+const userDataContainer = document.querySelector(".userDataContainer");
+const userName = document.querySelector(".userName");
+
+const showUser = (user)=>{
+    userName.innerText = user; 
+}
+
+
+
 const playMusic = () => {
     queenSong.play();
 }

@@ -281,6 +281,38 @@ margin-bottom: 4px;
 
 }
 
+.userDataContainer{
+    position: absolute;
+    width: 200px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #1212129a;
+    top: 0px;
+    flex-shrink: 0;
+    right: 0px;
+    display: flex;
+    align-items: center;
+    color: #ebebeb;
+
+}
+.userImg{
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    
+
+}
+.userName{
+    font-weight: 600;
+    padding-left: 10px;
+
+}
+
+
+
+
+
 /*  ~~~~~~~~~~ */
    .full{
     max-width: 100% ;
