@@ -8,6 +8,8 @@
 
 }
 .main-container{
+    background: rgb(63,7,6);
+    background: linear-gradient(180deg, rgba(63,7,6,1) 8%, rgba(18,18,18,1) 30%);
 
 }
     
@@ -219,7 +221,9 @@ margin-bottom: 4px;
         transform: translate(calc(-40vw), -30px);
         }
 }
+.section-header{
 
+}
 
 /*  ~~~~~~~~~~ */
    .full{
