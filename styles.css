@@ -153,6 +153,38 @@ a{
 .songs::-webkit-scrollbar-thumb:hover{
     background-color: rgb(228, 224, 224);
 }
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    padding: 0px 0px;
+    border-radius: 15px;
+    font-size: 14px;
+    
+}
+.btn-custom {
+height: 20px;
+}
+.border-radius{
+    border-radius: 10px;
+    width: 100px;
+    font-size: 10px;
+    text-align: top;
+    padding-top: 2px;
+}
+.div-height{
+    height: 20vh;
+}
+.small-img{
+    height: 32px;
+    width: 32px;
+    border-radius: 32px;
+    object-fit: scale-down;
+
+}
+.background{
+    background-color: darkmagenta;
+    padding: 10px;
+}
 
 /* .playButton{
     
