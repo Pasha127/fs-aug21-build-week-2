@@ -1,0 +1,106 @@
+body{
+    background-color: #1E1E1E;
+}
+.main-container{
+
+}
+    
+.nav-container{
+
+}
+ 
+.content-container{
+
+}
+   
+.small-album-container{
+
+}
+.large-album-container{
+
+}
+.buttons-container{
+
+}
+  
+.songs-container{
+
+}
+  
+.trackbar{
+
+}
+.small-album-container{
+    
+}
+.large-album-container{
+    
+}
+.buttons-container{
+    
+}
+.songs-container{
+    
+}
+.sectionHeading h3{
+    color: #FFFFFF;
+
+
+}
+.sectionHeading :first-child{
+    /* font-size: 30px; */
+    letter-spacing:-0.7mm;
+    font-weight: 600;
+}
+.sectionHeading :nth-of-type(2){
+    font-size: 14px;
+    color: #ABABAB;
+    font-weight: 700;
+}
+.sectionHeading :first-child:hover{
+    text-decoration: underline;
+}
+.sectionHeading :nth-of-type(2):hover{
+    text-decoration: underline;
+}
+
+.card{
+    /* display: inline-block; */
+    position: relative;
+    background-color:black ;
+    border-radius: 7px;
+    transition: box-shadow 0.3s;
+    transition: transform .3s;
+    
+
+}
+.card:hover {
+    /* height: 420px;
+    width: 320px; */
+    box-shadow: 0 16px 20px -7px rgba(0, 0, 0, 0.45);
+}
+.card img{
+    /* position: absolute; */
+    padding: 15px;
+}
+.card .card-title{
+    color: #FFFFFF;
+}
+.card .card-text{
+    color:#9E9E9E;
+}
+
+.card:hover{
+    background-color:#1E1E1E ;
+    
+
+}
+
+/* .playButton{
+    
+    border: 2px solid transpa;
+    padding: 20px;
+    border-radius: 50%;
+    background:green;
+    
+} */
