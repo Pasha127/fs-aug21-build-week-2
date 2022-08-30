@@ -95,6 +95,64 @@ body{
     
 
 }
+.full{
+    max-width: 100% ;
+}
+
+
+.logo {
+    padding-block: 20px;
+}
+
+.side{
+    background-color: black;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+}
+
+.side  span{
+    color: #ebebeb;
+    align-self: center;
+    padding-inline: 15px;
+
+}
+.line{
+    height: 1px;
+    background-color: gray;
+    width: 70%;
+    margin-left: 20px;
+}
+.heart{
+    height: 40px;
+    width: 40px;
+    justify-content: center;
+    background: linear-gradient(90deg, rgba(74,18,241,1) 0%, rgba(191,229,214,1) 100%);
+}
+a{
+    color: gray;
+}
+.songs{
+    height: 40vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+.songs::-webkit-scrollbar{
+   width: 10px;
+   background-color: transparent;
+
+}
+
+.songs::-webkit-scrollbar-thumb{
+    background-color: gray;
+    
+}
+
+.songs::-webkit-scrollbar-thumb:hover{
+    background-color: rgb(228, 224, 224);
+}
 
 /* .playButton{
     
