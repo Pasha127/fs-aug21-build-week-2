@@ -5,14 +5,43 @@
     --spotify-progress-gray-front: #b2b2b2;
     --spotify-dark-red: #3f0706;
     --spotify-album-purple: #a73b87;
+    --spotify-green: #1fdf64;
 
 }
 .main-container{
+    color: #ebebeb;;
     background: rgb(63,7,6);
     background: linear-gradient(180deg, rgba(63,7,6,1) 8%, rgba(18,18,18,1) 30%);
 
 }
+.spotify-light-bg{
+    background-color: var(--spotify-light-gray);
+}
+.card:hover .hoverPlayButton{
+    display: block;
+
+
     
+}
+.hoverPlayButton{
+    display: none;
+    position: absolute;
+background-color: var(--spotify-green);
+height: 55px;
+width: 55px;
+border-radius: 50%;
+flex-shrink: 0;
+transform: translate(180%,180%);
+}   
+.buttonTriangle{
+    position: absolute;
+    width: 0; 
+    height: 0; 
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    transform: translate(150%,90%);
+    border-left: 15px solid rgb(0, 0, 0);
+} 
 .nav-container{
 
 }
