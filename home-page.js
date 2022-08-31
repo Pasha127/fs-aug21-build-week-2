@@ -112,7 +112,7 @@ const makeCards = function (r) {
         <img src="${r.data[i].album.cover_medium}" class="card-img-top" alt="...">
         <div class="card-body p-0  bg-black">
         
-        <h5 class="card-title text-truncate mb-1 pt-2">${r.data[i].title}</h5>
+        <h5 class="card-title text-truncate mb-1 pt-2"><a href="./album-page.html?album-id=${r.data[i].album.id}">${r.data[i].title}</a></h5>
         <p class="card-text">${r.data[i].artist.name}.</p>                                              
         </div>`;
         document.querySelector(".row.my-4.cardContainer").append(newCard);

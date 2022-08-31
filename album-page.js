@@ -1,3 +1,4 @@
+const urlParams = new URLSearchParams(window.location.search);
 const options = {
     method: 'GET',
     headers: {
@@ -7,7 +8,7 @@ const options = {
 };
 
 const getAlbum = () => {
-    fetch(`https://striveschool-api.herokuapp.com/api/deezer/album/${urlParams.get('id')}`, options)
+    fetch(`https://striveschool-api.herokuapp.com/api/deezer/album/${urlParams.get('album-id')}`, options)
     .then(response => response.json())
     .then(album => {
         let albumCover = document.getElementById("album-cover");
@@ -43,4 +44,7 @@ const getAlbum = () => {
         
     })
     .catch(err => console.log(err))}
+    window.onload = ()=>{
+        getAlbum();
+    }
 

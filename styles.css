@@ -377,3 +377,142 @@ a{
 .songs::-webkit-scrollbar-thumb:hover{
     background-color: rgb(228, 224, 224);
 }
+.full{
+    max-width: 100% ;
+}
+
+
+.logo {
+    padding-block: 20px;
+}
+
+.side{
+    background-color: black;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+}
+
+.side  span{
+    color: #ebebeb;
+    align-self: center;
+    padding-inline: 15px;
+
+}
+.line{
+    height: 1px;
+    background-color: gray;
+    width: 70%;
+    margin-left: 20px;
+}
+.heart{
+    height: 40px;
+    width: 40px;
+    justify-content: center;
+    background: linear-gradient(90deg, rgba(74,18,241,1) 0%, rgba(191,229,214,1) 100%);
+}
+a{
+    color: gray;
+}
+.songs{
+    height: 40vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+.songs::-webkit-scrollbar{
+   width: 10px;
+   background-color: transparent;
+
+}
+
+.songs::-webkit-scrollbar-thumb{
+    background-color: gray;
+    
+}
+
+.songs::-webkit-scrollbar-thumb:hover{
+    background-color: rgb(228, 224, 224);
+}
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    padding: 0px 0px;
+    border-radius: 15px;
+    font-size: 14px;
+    
+}
+.btn-custom {
+height: 20px;
+}
+.border-radius{
+    border-radius: 10px;
+    width: 100px;
+    font-size: 10px;
+    text-align: top;
+    padding-top: 2px;
+}
+.div-height{
+    height: 20vh;
+}
+.small-img{
+    height: 32px;
+    width: 32px;
+    border-radius: 32px;
+    object-fit: scale-down;
+
+}
+
+
+
+
+
+.player {
+    background: green;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    position: relative; 
+    text-indent:-9999px;
+  }
+  
+  .player span {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-left: 15px solid #fff;
+    border-bottom: 10px solid transparent;
+    position:absolute;
+    top:30%;
+    left:40%;    
+  }
+  
+  .player:hover{
+    cursor:pointer;
+    opacity:0.8;
+    border:none;
+    position:absolute;  
+    box-shadow:none;
+  }
+  
+  .player:hover span{
+    top:30%;
+    left:40%;
+  }
+
+
+
+.main-container.album-main{
+    background-color: darkmagenta;
+    padding: 10px;
+    color: #ebebeb;;
+    background: rgb(237,0,237);
+    background: linear-gradient(180deg, rgba(178,0,178,1) 8%, rgba(18,18,18,1) 50%);
+
+}
+.faded{
+    background-color: #1e1e1eb4;
+    width: 100%;
+    margin-inline: 0;
+}
