@@ -30,16 +30,16 @@ const getAlbum = () => {
          for (let i = 0; i < album.tracks.data.length; i++) {
             const track = album.tracks.data[i];
             console.log(track)
-            trackslist.innerHTML +=`<div class="row" >
+            trackslist.innerHTML +=`<div class="row justify-content-between" >
+            <div class="d-flex">
             <div class="mt-2 mr-5">${i+1}</div>
             <div>
             <div>${track.title}</div>
             <div>${track.artist.name}</div>
             </div>
-        </div>
-        <div class="">${track.duration}</div>
-             </div>
-             </div>`
+            </div>
+            <div class="mr-4">${track.duration} min</div>        
+            </div>`
          }
         
     })
