@@ -15,9 +15,9 @@ const getAlbum = () => {
         let artistInfo = document.getElementById("artist")
         let trackslist = document.getElementById("track-list")
       
-            console.log(album)
-            albumCover.innerHTML = `<img height="150vh" width="100%" src=${album.cover_medium}
-            alt="this is photo">`
+            
+            albumCover.innerHTML = `<img class="cover-image" width="100%" src=${album.cover_medium}
+            alt="album cover">`
             
             artistInfo.innerHTML =`   <div>
             <h6 class="text-white">album</h6>
@@ -29,7 +29,7 @@ const getAlbum = () => {
             </div>`
          for (let i = 0; i < album.tracks.data.length; i++) {
             const track = album.tracks.data[i];
-            console.log(track)
+            
             trackslist.innerHTML +=`<div class="row justify-content-between" >
             <div class="d-flex">
             <div class="mt-2 mr-5">${i+1}</div>
@@ -38,7 +38,7 @@ const getAlbum = () => {
             <div>${track.artist.name}</div>
             </div>
             </div>
-            <div class="mr-4">${track.duration} min</div>        
+            <div class="mr-4">${convertToMin(track.duration)} min</div>        
             </div>`
          }
         
@@ -48,3 +48,8 @@ const getAlbum = () => {
         getAlbum();
     }
 
+const convertToMin = (num) => {
+   const getMinuts = Math.floor(num / 60)  
+   const getSeconeds = num % 60
+   return getMinuts + ":" + getSeconeds 
+}

@@ -464,7 +464,9 @@ height: 20px;
 
 }
 
-
+.cover-image{
+    object-fit: cover;
+}
 
 
 
@@ -491,8 +493,7 @@ height: 20px;
   .player:hover{
     cursor:pointer;
     opacity:0.8;
-    border:none;
-    position:absolute;  
+    border:none; 
     box-shadow:none;
   }
   
@@ -516,3 +517,5 @@ height: 20px;
     width: 100%;
     margin-inline: 0;
 }
+
+
