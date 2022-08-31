@@ -44,3 +44,12 @@ const getAlbum = () => {
     })
     .catch(err => console.log(err))}
 
+    function getusername() {
+        const username = localStorage.getItem('username')
+        const btnusername = document.getElementById('username')
+        btnusername.innerHTML = username
+    }
+
+    window.onload = () => {
+    }
+
