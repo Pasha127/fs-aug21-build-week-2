@@ -10,7 +10,7 @@ const options = {
 const getAlbum = () => {
     fetch(`https://striveschool-api.herokuapp.com/api/deezer/artist/${urlParams.get('artist-id')}`, options)
     .then(response => response.json())
-    .then(album => {
+    .then(artist => {
         console.log(album);
         let albumCover = document.getElementById("album-cover");
         let artistInfo = document.getElementById("artist")
