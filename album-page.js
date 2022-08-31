@@ -6,8 +6,8 @@ const options = {
     }
 };
 
-const getAlbum = (id) => {
-    fetch(`https://striveschool-api.herokuapp.com/api/deezer/album/${id}`, options)
+const getAlbum = () => {
+    fetch(`https://striveschool-api.herokuapp.com/api/deezer/album/${urlParams.get('id')}`, options)
     .then(response => response.json())
     .then(album => {
         let albumCover = document.getElementById("album-cover");
@@ -17,6 +17,7 @@ const getAlbum = (id) => {
             console.log(album)
             albumCover.innerHTML = `<img height="150vh" width="100%" src=${album.cover_medium}
             alt="this is photo">`
+            
             artistInfo.innerHTML =`   <div>
             <h6 class="text-white">album</h6>
             <h2 class="text-white">${album.title}</h2>
@@ -40,8 +41,6 @@ const getAlbum = (id) => {
              </div>`
          }
         
-      
-    
     })
     .catch(err => console.log(err))}
 
