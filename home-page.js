@@ -51,7 +51,7 @@ const showUser = (user)=>{
 }
 const playerClick = ()=> {
     playBtn.classList.toggle("d-none");
-        pauseBtn.classList.toggle("d-none");
+    pauseBtn.classList.toggle("d-none");
     if(!playBtn.classList.contains("d-none")){
         pauseSong();
         console.log('pause');
@@ -68,16 +68,16 @@ const addSongs = (data) =>{
         const newSong = new Audio(element.preview); 
         songList.push(newSong);
     }
-    playBtn.classList.add("d-none");
-    pauseBtn.classList.remove("d-none");
+    playBtn.classList.toggle("d-none");
+    pauseBtn.classList.toggle("d-none");
     addSongInfo(data);
     playMusic();
     changePlayerInfo();
 }
 const addSongInfo = (data) =>{
-    console.log('addsonginfo', data)
+    console.log('addsonginfo input', data)
     for(element of data.data){songDataArr.push(element)};
-    console.log(songDataArr);
+    console.log('addsonginfo dataArr',songDataArr);
 }
 
 const nextSong = () =>{
@@ -108,10 +108,11 @@ const clearLikes = () =>{
     localStorage.setItem("liked", []);
 }
 const playMusic = () => {
-    console.log(songList[currentSongIndex]);
+    console.log('play music current song in song list',songList[currentSongIndex]);
     songList[currentSongIndex].addEventListener('timeupdate', updateProgress);
     songList[currentSongIndex].addEventListener('timeupdate', durTime);
     songList[currentSongIndex].play();
+    changePlayerInfo();
     
 }
 const changePlayerInfo = () =>{
@@ -143,12 +144,12 @@ const setProgress = (e) => {
 const playRick = () => {
     rickRoll.play();
 }
-const playSong = (input)=>{
-    console.log("playSong input:", input);
-    const song = new Audio(input);
-    song.play();
-    console.log("music");
-}
+//const playSong = (input)=>{
+//    console.log("playSong input:", input);
+//    const song = new Audio(input);
+//    song.play();
+//    console.log("music");
+//}
 const volumeChange = (e) => {
     const widthF = volumeBarFront.offsetWidth;
     const widthB = volumeContainer.offsetWidth;
@@ -277,7 +278,7 @@ const makeCards = function (r,n=16) {
     document.querySelector(".spinnerContainer").classList.add("d-none");
     const oldCards = document.querySelectorAll(".cardBack");
     for(card of oldCards){card.remove()};
-    console.log(r);   
+    //console.log('addsonginfo input',r);   
     for(let i=0; i<n; i++){        
         const newCard = document.createElement("div");
         const hoverBtn = document.createElement("div");
@@ -304,7 +305,7 @@ const makeCards = function (r,n=16) {
 const makeSmallCards = (r,n=14) => {
     const container1 = document.querySelector(".smallCardsContainer1")
     const container2 = document.querySelector(".smallCardsContainer2")    
-    console.log(r)
+    //console.log(r)
     for (let i = 0; i <n; i++) {
         const album = r.data[i];
         const newCard = document.createElement("div")
