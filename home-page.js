@@ -100,12 +100,12 @@ const loadSmallTracks = (input) => {
     .then(response => makeSmallCards(response))
     .catch(err => console.error(err));  
 }
-const makeCards = function (r) {
+const makeCards = function (r,n=8) {
     document.querySelector(".spinnerContainer").classList.add("d-none");
     const oldCards = document.querySelectorAll(".cardBack");
     for(card of oldCards){card.remove()};
     console.log(r);   
-    for(let i=0; i<5; i++){        
+    for(let i=0; i<n; i++){        
         const newCard = document.createElement("div");
         const hoverBtn = document.createElement("div");
         hoverBtn.classList.add("hoverPlayButton");
@@ -143,13 +143,13 @@ window.onload = () => {
 
 }
 
-const makeSmallCards = (r) => {
+const makeSmallCards = (r,n=10) => {
     const container = document.querySelector(".smallCardsContainer")
     console.log(r)
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i <n; i++) {
         const album = r.data[i];
         const newCard = document.createElement("div")
-        newCard.setAttribute("class", 'col-12 col-sm-6 col-md-2')
+        newCard.setAttribute("class", 'col')
         newCard.innerHTML = ` <div class="tamplet ">
         <div class="row">
             <div class="col-4">
