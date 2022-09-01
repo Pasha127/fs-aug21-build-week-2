@@ -470,7 +470,8 @@ height: 20px;
 
 }
 .albums{
-    background: linear-gradient(180deg, rgb(136, 136, 136) 4%, rgba(18,18,18,1) 50%);
+    background: rgb(0,0,0);
+    background: linear-gradient(360deg, rgba(0,0,0,1) 46%, rgba(57,57,57,1) 88%);
 }
 
 
