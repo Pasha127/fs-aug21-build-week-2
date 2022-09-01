@@ -11,6 +11,9 @@
 body{
     overflow-x: hidden;
 }
+input.searchField{
+    width: 160px;
+}
 .searchBtn{
     cursor: pointer;
 }

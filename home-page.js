@@ -3,7 +3,7 @@ let albumDisplayArray = [];
 let songList = [];
 let currentSongIndex = 0;
 let songDataArr = [];
-let likedArr = []
+let likedArr = [0]
 
 
 const sideRecs = document.querySelectorAll(".sideRec");
@@ -25,8 +25,12 @@ const volumeBarFront = document.querySelector(".volumeBarFront");
 const faVolumeOff = document.querySelector(".fa-volume-off");
 const searchField  = document.querySelector(".searchField");
 const searchFieldContainer = document.querySelector(".searchFieldContainer");
+const smallSuggestionContainer = document.querySelector(".small-suggestion-container");         
+const smallCardsArea = document.querySelector(".smallCardsArea");         
 const searchBtn = document.querySelector(".searchBtn");
 const header01 = document.querySelectorAll(".section-header")[0];
+const header02 = document.querySelectorAll(".section-header")[1];
+const header03 = document.querySelectorAll(".section-header")[2];
 const userDataContainer = document.querySelector(".userDataContainer");
 const userName = document.querySelector(".userName");
 const albumInfoTitle = document.querySelector(".albumInfoTitle");
@@ -58,14 +62,17 @@ const playerClick = ()=> {
 }
 const addSongs = (data) =>{    
     songList[currentSongIndex].pause()
-    songList =[];    
+    songDataArr =[];    
+    so =[];    
     for(element of data.data){
         const newSong = new Audio(element.preview); 
         songList.push(newSong);
     }
     playBtn.classList.add("d-none");
     pauseBtn.classList.remove("d-none");
+    addSongInfo(data);
     playMusic();
+    changePlayerInfo();
 }
 const addSongInfo = (data) =>{
     console.log('addsonginfo', data)
@@ -101,11 +108,11 @@ const clearLikes = () =>{
     localStorage.setItem("liked", []);
 }
 const playMusic = () => {
+    console.log(songList[currentSongIndex]);
     songList[currentSongIndex].addEventListener('timeupdate', updateProgress);
     songList[currentSongIndex].addEventListener('timeupdate', durTime);
     songList[currentSongIndex].play();
-    console.log(songList[currentSongIndex]);
-    changePlayerInfo()
+    
 }
 const changePlayerInfo = () =>{
     playerArt.setAttribute('src', songDataArr[currentSongIndex].album.cover);
@@ -222,10 +229,11 @@ const showHideSearch = () =>{
     searchFieldContainer.classList.toggle("d-flex");
     if(!searchField.classList.contains("d-none")){
         searchField.focus();
-    }    
+    } 
+    
 }
 const changeHeader = (newText)=>{
-    header01.innerText = newText;
+    header02.innerText = newText;
 
 }
 const enterSearch = (e)=>{
@@ -233,9 +241,12 @@ const enterSearch = (e)=>{
         
         showHideSearch()
         loadTracks(searchField.value)
+        changeHeader("Search Results");
+        header01.classList.add("d-none");   
+        header03.classList.add("d-none");   
+        smallCardsArea.classList.add("d-none");   
     }
-    changeHeader("Search Results");
-}
+    }
 const linkSearch = (e)=>{
     changeHeader(e.target.innerText);
     loadTracks(e.target.innerText);
@@ -286,7 +297,7 @@ const makeCards = function (r,n=16) {
         newCard.querySelector(".card").prepend(hoverBtn);  
         hoverBtn.append(hoverTri);
         
-        hoverBtn.addEventListener("click", () => {playSong(r.data[i].preview)});
+        hoverBtn.addEventListener("click", () => {addSongs(r)});
         if(i<n/2){document.querySelector(".row.my-4.cardContainer1").append(newCard);}else{document.querySelector(".row.my-4.cardContainer2").append(newCard);};
     }    
 }
@@ -315,21 +326,18 @@ const makeSmallCards = (r,n=14) => {
 const musicOnLoad = () => {
     fetch(`https://striveschool-api.herokuapp.com/api/deezer/search?q=rick astley`, options)
     .then(response => response.json())
-    .then(response => {(response) => {
-        console.log(response.data[0]);
-    }})
-    .catch(err => console.error(err)); 
-    console.log  
-    //pauseSong();
+    .then(response => initialMusic(response))
+    .catch(err => console.error(err));  
 }
-const loadInitialContent = () =>{
-    let cardButtons = document.querySelectorAll(".hoverPlayButton");
-    while(true){
-        break
-        if(cardButtons.length){
-
-        }
+const initialMusic = (data) => {
+    for(item of data.data){
+        songList.push(new Audio(item.preview));
+        songDataArr.push(item)
+       // console.log(songDataArr,songList);
     }
+    changePlayerInfo();
+}
+const loadInitialContent = () =>{        
     musicOnLoad();
     loadSmallTracks("busta");
     loadTracks("queen");
@@ -349,7 +357,7 @@ window.onload = () => {
     likeBtnF.addEventListener("click", like);
     volumeContainer.addEventListener("click", volumeChange);
     likedArr = JSON.parse(localStorage.getItem("liked"));
-    loadInitialContent()
+    loadInitialContent();
     
 }
 
