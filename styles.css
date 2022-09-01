@@ -20,15 +20,36 @@ body{
     background: linear-gradient(180deg, rgba(63,7,6,1) 8%, rgba(18,18,18,1) 30%);
 
 }
+.cardContainer1{
+    height: 285px;
+}
+.cardContainer2{
+    height: 285px;
+}
 .spotify-light-bg{
     background-color: var(--spotify-light-gray);
 }
 .card:hover .hoverPlayButton{
-    display: block;
-
-
-    
+    display: block;    
 }
+
+.tamplet:hover .smallHoverPlayButton{
+    /* background-color: #1fdf6553; */
+    display: block;    
+}
+
+.smallHoverPlayButton{
+    display: none;
+    position: absolute;
+background-color: var(--spotify-green);
+height: 55px;
+width: 55px;
+border-radius: 50%;
+flex-shrink: 0;
+/* transform: translate(180%,180%); */
+cursor: pointer;
+}   
+
 .hoverPlayButton{
     display: none;
     position: absolute;
@@ -49,10 +70,12 @@ cursor: pointer;
     transform: translate(150%,90%);
     border-left: 15px solid rgb(0, 0, 0);
 } 
-.nav-container{}
+.nav-container{
+
+}
 .navLimiter{
     flex-shrink: 0;
-    max-width: 16%;
+    width: 230px;
 }
 .sideRec{
     cursor: pointer;
@@ -80,6 +103,33 @@ cursor: pointer;
 .small-album-container{
 
 }
+div.buffer{
+    height: 120px;
+    display: flex;
+    align-items: center;
+    overflow-y: hidden;
+}
+.smallCardsContainer2{
+    height: 280;
+}
+.smallCardsContainer1{
+    height: 280;
+
+}
+.tamplet{
+    height: 80px;
+    width: 200px;
+    background-color: rgba(128, 128, 128, 0.195);
+    box-shadow: 5px 5px 15px 5px #000000;
+    margin-top: 20px;
+    margin-right: 40px;
+    border-radius: 4px;
+    font-size: 10pt;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
 .large-album-container{
 
 }
@@ -113,13 +163,7 @@ cursor: pointer;
     border-radius: 4px;
 
 }
-.tamplet{
-    height: 100px;
-    width: 300px;
-    background-color: transparent;
-    box-shadow: 5px 5px 15px 5px #000000;
-    margin-top: 40px;
-}
+
   
 .trackbar{
     position: fixed;

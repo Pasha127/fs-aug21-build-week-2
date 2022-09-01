@@ -262,7 +262,7 @@ const loadSmallTracks = (input) => {
     .then(response => makeSmallCards(response))
     .catch(err => console.error(err));  
 }
-const makeCards = function (r,n=8) {
+const makeCards = function (r,n=16) {
     document.querySelector(".spinnerContainer").classList.add("d-none");
     const oldCards = document.querySelectorAll(".cardBack");
     for(card of oldCards){card.remove()};
@@ -273,7 +273,7 @@ const makeCards = function (r,n=8) {
         hoverBtn.classList.add("hoverPlayButton");
         const hoverTri = document.createElement("div");
         hoverTri.classList.add("buttonTriangle");
-        newCard.setAttribute("class", 'col-12 col-sm-6 col-md-3 col-xl-2 mb-4 cardBack')
+        newCard.setAttribute("class", ' mb-4 mx-2 cardBack')
         newCard.innerHTML = `
         <div class="card spotify-light-bg p-3" style="width: 12rem; height: 18rem;">        
         <img src="${r.data[i].album.cover_medium}" class="card-img-top" alt="...">
@@ -282,14 +282,35 @@ const makeCards = function (r,n=8) {
         <h5 class="card-title text-truncate mb-1 pt-2"><a href="./album-page.html?album-id=${r.data[i].album.id}">${r.data[i].title}</a></h5>
         <p class="card-text"><a href="./artist-page.html?album-id=${r.data[i].artist.id}">${r.data[i].artist.name}</a></p>                                              
         </div>`;
-        document.querySelector(".row.my-4.cardContainer").append(newCard);
+        
         newCard.querySelector(".card").prepend(hoverBtn);  
         hoverBtn.append(hoverTri);
         
         hoverBtn.addEventListener("click", () => {playSong(r.data[i].preview)});
+        if(i<n/2){document.querySelector(".row.my-4.cardContainer1").append(newCard);}else{document.querySelector(".row.my-4.cardContainer2").append(newCard);};
+    }    
+}
+const makeSmallCards = (r,n=14) => {
+    const container1 = document.querySelector(".smallCardsContainer1")
+    const container2 = document.querySelector(".smallCardsContainer2")    
+    console.log(r)
+    for (let i = 0; i <n; i++) {
+        const album = r.data[i];
+        const newCard = document.createElement("div")
+        //newCard.setAttribute("class", 'col')
+        newCard.innerHTML = ` <div class="tamplet ">
+        <div class="row">
+            <div class="col-4">
+                <img src=${album.album.cover_medium} height="80px" width="150%" alt="">
+
+            </div>
+            <div class="col-8 d-flex">
+              <p class=".text-light align-self-center text-white my-0"> <a href="album-page.html?album-id=${album.id}"> ${album.title}</a></p>
+            </div>
+        </div>
+    </div>`   
+    if(i<n/2){container1.append(newCard)}else{container2.append(newCard)};
     }
-    
-    
 }
 const musicOnLoad = () => {
     fetch(`https://striveschool-api.herokuapp.com/api/deezer/search?q=rick astley`, options)
@@ -310,9 +331,10 @@ const loadInitialContent = () =>{
         }
     }
     musicOnLoad();
-    loadSmallTracks("queen");
+    loadSmallTracks("busta");
     loadTracks("queen");
 }
+
 window.onload = () => {
     
     playBtn.addEventListener("click", playerClick);
@@ -331,29 +353,6 @@ window.onload = () => {
     
 }
 
-const makeSmallCards = (r,n=10) => {
-    const container = document.querySelector(".smallCardsContainer")
-    console.log(r)
-    for (let i = 0; i <n; i++) {
-        const album = r.data[i];
-        const newCard = document.createElement("div")
-        newCard.setAttribute("class", 'col')
-        newCard.innerHTML = ` <div class="tamplet ">
-        <div class="row">
-            <div class="col-4">
-                <img src=${album.album.cover_medium} height="100px" width="100%" alt="">
-
-            </div>
-            <div class="col-8 d-flex">
-                <p class="align-self-center text-white">${album.title}</p>
-            </div>
-        </div>
-    </div>`
-     container.append(newCard)
-    }
-    
-
-}
 
 
 //card example:
