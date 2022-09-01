@@ -105,13 +105,13 @@ const makeCards = function (r) {
     const oldCards = document.querySelectorAll(".cardBack");
     for(card of oldCards){card.remove()};
     console.log(r);   
-    for(let i=0; i<5; i++){        
+    for(let i=0; i<6; i++){        
         const newCard = document.createElement("div");
         const hoverBtn = document.createElement("div");
         hoverBtn.classList.add("hoverPlayButton");
         const hoverTri = document.createElement("div");
         hoverTri.classList.add("buttonTriangle");
-        newCard.setAttribute("class", 'col-12 col-sm-6 col-md-3 col-xl-2 mb-4 cardBack')
+        newCard.setAttribute("class", 'col-12 col-sm-6 col-md-3 col-lg-3 col-xl-2 mb-4 cardBack')
         newCard.innerHTML = `
         <div class="card spotify-light-bg p-3" style="width: 12rem; height: 18rem;">        
         <img src="${r.data[i].album.cover_medium}" class="card-img-top" alt="...">
@@ -146,10 +146,10 @@ window.onload = () => {
 const makeSmallCards = (r) => {
     const container = document.querySelector(".smallCardsContainer")
     console.log(r)
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 12; i++) {
         const album = r.data[i];
         const newCard = document.createElement("div")
-        newCard.setAttribute("class", 'col-12 col-sm-6 col-md-2')
+        newCard.setAttribute("class", 'col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 ')
         newCard.innerHTML = ` <div class="tamplet ">
         <div class="row">
             <div class="col-4">
