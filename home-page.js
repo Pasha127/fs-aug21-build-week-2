@@ -105,7 +105,7 @@ const makeCards = function (r) {
     const oldCards = document.querySelectorAll(".cardBack");
     for(card of oldCards){card.remove()};
     console.log(r);   
-    for(let i=0; i<r.data.length; i++){        
+    for(let i=0; i<5; i++){        
         const newCard = document.createElement("div");
         const hoverBtn = document.createElement("div");
         hoverBtn.classList.add("hoverPlayButton");
@@ -146,10 +146,10 @@ window.onload = () => {
 const makeSmallCards = (r) => {
     const container = document.querySelector(".smallCardsContainer")
     console.log(r)
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 10; i++) {
         const album = r.data[i];
         const newCard = document.createElement("div")
-        newCard.setAttribute("class", 'col-12 col-sm-6 col-md-3  ')
+        newCard.setAttribute("class", 'col-12 col-sm-6 col-md-2')
         newCard.innerHTML = ` <div class="tamplet ">
         <div class="row">
             <div class="col-4">
