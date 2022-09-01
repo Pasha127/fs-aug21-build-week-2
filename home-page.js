@@ -112,8 +112,8 @@ const makeCards = function (r) {
         <img src="${r.data[i].album.cover_medium}" class="card-img-top" alt="...">
         <div class="card-body p-0  bg-black">
         
-        <h5 class="card-title text-truncate mb-1 pt-2"><a href="./album-page.html?album-id=${r.data[i].album.id}">${r.data[i].title}</a></h5>
-        <p class="card-text"><a href="./artist-page.html?album-id=${r.data[i].artist.id}">${r.data[i].artist.name}</a></p>                                              
+        <h5 class="card-title text-truncate mb-1 pt-2"><a href="./album-page.html?album-id=${r.data[i].album.id}&artist-id=${r.data[i].artist.id}">${r.data[i].title}</a></h5>
+        <p class="card-text"><a href="./artist-page.html?artist-id=${r.data[i].artist.id}&artist-name=${r.data[i].artist.name}&album-id=${r.data[i].album.id}">${r.data[i].artist.name}</a></p>                                              
         </div>`;
         document.querySelector(".row.my-4.cardContainer").append(newCard);
         newCard.querySelector(".card").prepend(hoverBtn);  

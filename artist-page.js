@@ -7,42 +7,65 @@ const options = {
     }
 };
 
+const fetchsong = (songsurl) => {
+    fetch(`${songsurl}`,options)
+    .then(response => response.json())
+    .then(songs => {
+
+        console.log(songs.data)
+        let popularsong = document.getElementById("popularsongs")
+
+       
+
+
+       
+           for (let i = 0; i < songs.data.length; i++) {
+            const track = songs.data[i];
+            
+           
+            console.log(track)
+            popularsong.innerHTML += `
+           <div class="row justify-content-between mt-3" >
+           <div>
+            <span class="ml-5 text-white">${i+1}</span>
+            <img height="40px" width="40px" class="ml-3" src="${track.album.cover_medium}" alt="">
+            <span class="ml-3"><strong>${track.title_short}</strong></span>
+            </div>
+            <span>monthly lestners</span>
+            <span>${convertToMin(track.duration)} min</span>
+            </div>
+            `
+           }
+    })
+}
+
+
+
+const convertToMin = (num) => {
+    const getMinuts = Math.floor(num / 60)  
+    const getSeconeds = num % 60
+    return getMinuts + ":" + getSeconeds 
+ }
+
 const getAlbum = () => {
     fetch(`https://striveschool-api.herokuapp.com/api/deezer/artist/${urlParams.get('artist-id')}`, options)
     .then(response => response.json())
     .then(artist => {
-        console.log(album);
-        let albumCover = document.getElementById("album-cover");
-        let artistInfo = document.getElementById("artist")
-        let trackslist = document.getElementById("track-list")
-      
-            console.log(album)
-            albumCover.innerHTML = `<img height="150vh" width="100%" src=${album.cover_medium}
-            alt="this is photo">`
-            
-            artistInfo.innerHTML =`   <div>
-            <h6 class="text-white">album</h6>
-            <h2 class="text-white">${album.title}</h2>
-            <div class="d-flex">
-            <img class="small-img" src=${album.artist.picture}
-             alt="photo">
-             <h6 class="text-white"><strong>${album.artist.name}</strong><strong>.</strong><strong>.</strong>${album.duration} min </h6>
-            </div>`
-         for (let i = 0; i < album.tracks.data.length; i++) {
-            const track = album.tracks.data[i];
-            console.log(track)
-            trackslist.innerHTML +=`<div class="row justify-content-between" >
-            <div class="d-flex">
-            <div class="mt-2 mr-5">${i+1}</div>
-            <div>
-            <div>${track.title}</div>
-            <div>${track.artist.name}</div>
-            </div>
-            </div>
-            <div class="mr-4">${track.duration} min</div>        
-            </div>`
-         }
-        
+        let artistname = document.querySelector(".artist-name")
+        console.log(artistname)
+        let songsurl = artist.tracklist
+
+       
+       
+        artistname.innerText = urlParams.get("artist-name")
+        console.log(artist)
+
+       let fans = document.getElementById("fans-number")
+       fans.innerHTML = `${artist.nb_fan} monthly listener`
+
+
+        fetchsong(songsurl)
+
     })
     .catch(err => console.log(err))}
     window.onload = ()=>{
