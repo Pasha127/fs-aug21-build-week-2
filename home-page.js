@@ -60,23 +60,26 @@ const playerClick = ()=> {
         playMusic();
     }
 }
-const addSongs = (data) =>{    
+const addSong = (data) =>{    
+    console.log(data.preview);
     songList[currentSongIndex].pause()
-    songDataArr =[];    
-    so =[];    
-    for(element of data.data){
-        const newSong = new Audio(element.preview); 
+    currentSongIndex=songList.length-1;           
+    //for(element of data.data){
+        const newSong = new Audio(data.preview); 
         songList.push(newSong);
-    }
+    //}
+    if(pauseBtn.classList.contains("d-none")){
     playBtn.classList.toggle("d-none");
-    pauseBtn.classList.toggle("d-none");
+    pauseBtn.classList.toggle("d-none");}
     addSongInfo(data);
-    playMusic();
+
+    nextSong();
     changePlayerInfo();
 }
 const addSongInfo = (data) =>{
     console.log('addsonginfo input', data)
-    for(element of data.data){songDataArr.push(element)};
+    songDataArr.push(data)
+    //for(element of data.data){songDataArr.push(element)};
     console.log('addsonginfo dataArr',songDataArr);
 }
 
@@ -86,6 +89,9 @@ const nextSong = () =>{
     currentSongIndex++;
     if(currentSongIndex > songList.length-1){currentSongIndex = 0;}
     playMusic()
+    if(pauseBtn.classList.contains("d-none")){
+        playBtn.classList.toggle("d-none");
+        pauseBtn.classList.toggle("d-none");}
 }
 const prevSong = () =>{
     songList[currentSongIndex].pause();
@@ -93,6 +99,9 @@ const prevSong = () =>{
     currentSongIndex--;
     if(currentSongIndex < 0){currentSongIndex = songList.length-1}
     playMusic()
+    if(pauseBtn.classList.contains("d-none")){
+        playBtn.classList.toggle("d-none");
+        pauseBtn.classList.toggle("d-none");}
 }
 const pauseSong = () =>{
     songList[currentSongIndex].pause()
@@ -298,7 +307,7 @@ const makeCards = function (r,n=16) {
         newCard.querySelector(".card").prepend(hoverBtn);  
         hoverBtn.append(hoverTri);
         
-        hoverBtn.addEventListener("click", () => {addSongs(r)});
+        hoverBtn.addEventListener("click", () => {addSong(r.data[i])});
         if(i<n/2){document.querySelector(".row.my-4.cardContainer1").append(newCard);}else{document.querySelector(".row.my-4.cardContainer2").append(newCard);};
     }    
 }
@@ -331,11 +340,11 @@ const musicOnLoad = () => {
     .catch(err => console.error(err));  
 }
 const initialMusic = (data) => {
-    for(item of data.data){
-        songList.push(new Audio(item.preview));
-        songDataArr.push(item)
+    //for(item of data.data){
+        songList.push(new Audio(data.data[0].preview));
+        songDataArr.push(data.data[0])
        // console.log(songDataArr,songList);
-    }
+    //}
     changePlayerInfo();
 }
 const loadInitialContent = () =>{        
