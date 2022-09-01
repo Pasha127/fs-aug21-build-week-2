@@ -100,7 +100,7 @@ const loadSmallTracks = (input) => {
     .then(response => makeSmallCards(response))
     .catch(err => console.error(err));  
 }
-const makeCards = function (r,n=8) {
+const makeCards = function (r,n=6) {
     document.querySelector(".spinnerContainer").classList.add("d-none");
     const oldCards = document.querySelectorAll(".cardBack");
     for(card of oldCards){card.remove()};
@@ -143,7 +143,7 @@ window.onload = () => {
 
 }
 
-const makeSmallCards = (r,n=10) => {
+const makeSmallCards = (r,n=12) => {
     const container = document.querySelector(".smallCardsContainer")
     console.log(r)
     for (let i = 0; i < n; i++) {
