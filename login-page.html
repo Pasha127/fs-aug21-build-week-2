@@ -34,7 +34,7 @@
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                         <label class="form-check-label" for="exampleCheck1">Remeber me</label>
                     </div>
-                    <button onclick="save_data()" type="submit" class="btn ">LOG IN</button>
+                    <button onclick="logIn()" type="submit" class="btn ">LOG IN</button>
                 </div>
             </form>
             <div class="signUp align-content-center">
@@ -50,26 +50,26 @@
     </div>
     <script>
         
-        function save_data()  {
+        function logIn()  {
             let email = document.querySelector('#email').value
             let psw = document.querySelector('#psw').value
 
-            user_Data = new Array();
-            user_Data = JSON.parse(localStorage.getItem("user"))?JSON.parse(localStorage.getItem("user")):[]
+        //     user_Data = new Array();
+        //     user_Data = JSON.parse(localStorage.getItem("user"))?JSON.parse(localStorage.getItem("user")):[]
             if (user_Data.some((v)=>{return v.email==email && v.psw==psw})) {
                 alert("login success")
                 console.log(hey)
                 let current_user = user_Data.filter((v) => { return v.email == email && v.psw == psw })
                 // localStorage.setItem("name",current-user.name)
                 // localStorage.setItem("email",current-user.name)
-                // if(email===""){
-                //     alert("please provide an email")
-                // }else{
-                //     {
-                //         alert("login successful")
-                //         window.location.href="./home-page.html";
-                //     }
-                // }
+                if(email===""){
+                    alert("please provide an email")
+                }else{
+                    {
+                        alert("login successful")
+                        window.location.href="./home-page.html";
+                    }
+                }
 
 
                 
@@ -79,7 +79,7 @@
                 //     "email": email,
                 //     "psw": psw
                 // })   
-                localStorage.setItem("user",JSON.stringify(user_Data))
+                // localStorage.setItem("user",JSON.stringify(user_Data))
                 alert("login failed")
             }
 
@@ -103,6 +103,7 @@
 
 
     </script>
+    <script src="login-page.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
