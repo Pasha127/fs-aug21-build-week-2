@@ -91,9 +91,14 @@ const loadTracks = (input) => {
     fetch(`https://striveschool-api.herokuapp.com/api/deezer/search?q=${input}`, options)
     .then(response => response.json())
     .then(response => makeCards(response))
-    .catch(err => console.error(err)); 
-    
-    
+    .catch(err => console.error(err));  
+}
+
+const loadSmallTracks = (input) => {    
+    fetch(`https://striveschool-api.herokuapp.com/api/deezer/search?q=${input}`, options)
+    .then(response => response.json())
+    .then(response => makeSmallCards(response))
+    .catch(err => console.error(err));  
 }
 const makeCards = function (r) {
     document.querySelector(".spinnerContainer").classList.add("d-none");
@@ -133,11 +138,34 @@ window.onload = () => {
     searchBtn.addEventListener("click", showHideSearch);
     searchField.addEventListener("keypress", enterSearch);
     loadTracks("queen");
+    loadSmallTracks("queen");
     for(link of sideRecs){link.addEventListener("click", (e)=>{linkSearch(e)})}
 
 }
 
+const makeSmallCards = (r) => {
+    const container = document.querySelector(".smallCardsContainer")
+    console.log(r)
+    for (let i = 0; i < 8; i++) {
+        const album = r.data[i];
+        const newCard = document.createElement("div")
+        newCard.setAttribute("class", 'col-12 col-sm-6 col-md-3  ')
+        newCard.innerHTML = ` <div class="tamplet ">
+        <div class="row">
+            <div class="col-4">
+                <img src=${album.album.cover_medium} height="100px" width="100%" alt="">
 
+            </div>
+            <div class="col-8 d-flex">
+                <p class="align-self-center text-white">${album.title}</p>
+            </div>
+        </div>
+    </div>`
+     container.append(newCard)
+    }
+    
+
+}
 
 
 //card example:

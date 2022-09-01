@@ -113,6 +113,12 @@ cursor: pointer;
     border-radius: 4px;
 
 }
+.tamplet{
+    height: 100px;
+    background-color: transparent;
+    box-shadow: 5px 5px 15px 5px #000000;
+    margin-top: 40px;
+}
   
 .trackbar{
     position: fixed;
