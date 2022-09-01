@@ -1,16 +1,20 @@
-// const name = document.getElementById('name') 
-// const emails = document.getElementById('email') 
-// const psw = document.getElementById('password') 
-
-
-let users = []
-localStorage.setItem("users",[])
-
-const saveData = () =>{
-    // preventDefault();
-    let username = document.getElementById('name').value
+let username = document.getElementById('name').value
     let email = document.getElementById('email').value
     let password = document.getElementById('password').value
+
+
+    let users = []
+    localStorage.setItem("users",[])
+    
+    const saveData = () =>{
+    senderror();
+
+    // preventDefault();
+    username = document.getElementById('name').value
+    email = document.getElementById('email').value
+    password = document.getElementById('password').value
+    password = document.getElementById('password').value
+
     
     let user_data = {};
     user_data.name= username;
@@ -31,15 +35,12 @@ const saveData = () =>{
     // localStorage.getItem("name")
     
 
-    console.log(user_data)
+    // console.log(user_data)
     document.getElementById('name').value="";
     document.getElementById('email').value="";
     document.getElementById('password').value="";
-    document.getElementById('cinfirm-password').value="";
+    document.getElementById('confirm-password').value="";
 
-   
-senderror();
-    
 } 
 
 
@@ -52,8 +53,17 @@ senderror();
 //     } 
 // }
 
-function senderror(inputField,errorMessage) {
-   if(username.value.trim()==""){
-       alert("name cannot be emoty")
-    } 
-}
+
+function senderror() {
+if(document.querySelector("#name").value ===""|| document.querySelector("#name").value==="Name"){
+alert("name cannot be empty")
+
+}else if(document.querySelector("#email").value ===""|| document.querySelector("#email").value==="Email"){
+alert("email cannot be empty")
+}else if(document.querySelector("#password").value ===""|| document.querySelector("#password").value==="password"){
+alert("password cannot be empty")
+}else if(document.querySelector("#confirm-password").value ===""||
+document.querySelector("#confirm-password").value==="NConfirm Password"){
+alert("confirm password cannot be empty")
+}}
+
