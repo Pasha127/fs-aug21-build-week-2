@@ -317,7 +317,7 @@ const loadInitialContent = () =>{
 }
 */
 
-const showUser = ()=>{
+const showUser2 = ()=>{
     userName2.innerText = JSON.parse(localStorage.activeUser); 
     userName1.innerText = JSON.parse(localStorage.activeUser); 
 }
@@ -341,7 +341,7 @@ window.onload = () => {
     likedArr = JSON.parse(localStorage.getItem("liked"));
  //   loadInitialContent();
     /////Music Player^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    showUser();
+    showUser2();
 }
 
 ////Music Player End----------------------------------------------------------------------------------------------------------------
