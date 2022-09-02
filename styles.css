@@ -371,12 +371,14 @@ margin-bottom: 4px;
 
 
 .album-cover{
-    height: 40vh;
+    background-image: url();
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-image: url("https://images.unsplash.com/photo-1661074578833-59d16206fc7a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDE3fGhtZW52UWhVbXhNfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60");
-
+    height: 40vh;
 }
 .artist-name{
     font-size: 100px;

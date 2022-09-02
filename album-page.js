@@ -32,7 +32,7 @@ const header01 = document.querySelectorAll(".section-header")[0];
 const header02 = document.querySelectorAll(".section-header")[1];
 const header03 = document.querySelectorAll(".section-header")[2];
 const userDataContainer = document.querySelector(".userDataContainer");
-const userName = document.querySelector(".userDataContainer .userName");
+const userName1 = document.querySelector(".userDataContainer .userName1");
 const albumInfoTitle = document.querySelector(".albumInfoTitle");
 const albumInfoArtist = document.querySelector(".albumInfoArtist");
 const likeBtn = document.querySelector(".likeBtn");
@@ -343,8 +343,10 @@ const linkSearch = (e)=>{
 }
 ////Search Function End-----------------------------------------------------------------------------------------------------------
 
-const showUser = ()=>{
-    userName.innerText = JSON.parse(localStorage.activeUser); 
+const showUser1 = ()=>{
+    userName1.innerText = JSON.parse(localStorage.activeUser);
+   
+
 }
 
     window.onload = ()=>{
@@ -362,9 +364,9 @@ const showUser = ()=>{
         likeBtnF.addEventListener("click", like);
         volumeContainer.addEventListener("click", volumeChange);
         likedArr = JSON.parse(localStorage.getItem("liked"));
-        loadInitialContent();
+     //   loadInitialContent();
         /////Music Player^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        showUser();
+        showUser1();
     }
 
 const convertToMin = (num) => {
