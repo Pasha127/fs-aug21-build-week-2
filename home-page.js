@@ -3,7 +3,7 @@ let albumDisplayArray = [];
 let songList = [];
 let currentSongIndex = 0;
 let songDataArr = [];
-let likedArr = [0]
+let likedArr = [];
 
 
 const sideRecs = document.querySelectorAll(".sideRec");
@@ -109,7 +109,10 @@ const pauseSong = () =>{
 const like = () =>{
     likeBtn.classList.toggle("d-none");
     likeBtnF.classList.toggle("d-none");
-    likedArr.push(songDataArr[currentSongIndex]);
+    console.log("song data array",songDataArr[currentSongIndex])
+    console.log("liked array prepush",likedArr)
+    likedArr.push({...songDataArr[currentSongIndex]});
+    console.log("liked array post push",likedArr)
     localStorage.setItem("liked", JSON.stringify(likedArr)) 
     
 }
