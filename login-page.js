@@ -8,27 +8,30 @@ const logIn = () =>{
     const email = document.getElementById('email').value
     const password = document.getElementById('psw').value
     const activeUser = email;
-    localStorage.setItem("activeUser",JSON.stringify(activeUser))
+    const storedUsers = JSON.parse(localStorage.users);
+    console.log(storedUsers[0].email)
+
     if(document.querySelector("#email").value ===""|| document.querySelector("#email").value==="Email address or user name"){
         alert("email cannot be empty")}
         else if(document.querySelector("#psw").value ===""|| document.querySelector("#psw").value==="Password"){
-        alert("password cannot be empty")}
-        else if(document.querySelector("#email").value!==localStorage.getItem("email")){
-            alert("Please enter a valid Username/email or sign up.")}
-            else if(password!==localStorage.getItem("password")){
-                alert("Please enter a valid password.")}
-                
-                else{
+            alert("password cannot be empty")}
+            else if(document.querySelector("#email").value!==(storedUsers[0].email)){
+                alert("Please enter a valid Username/email or sign up.")}
+                else if(password!==(storedUsers[0].password)){
+                    alert("Please enter a valid password.")}
                     
-                    
-                    document.location = "./home-page.html"
-                }
-                console.log(localStorage.getItem("email"))
+                    else{
+                        
+                        
+                        document.location = "./home-page.html"
+                    }
+                    console.log(localStorage.getItem("email"))  
+                    localStorage.setItem("activeUser",JSON.stringify(activeUser))
     
     document.getElementById('email').value="";
     document.getElementById('psw').value="";
-
 }
+
 }
 
 
@@ -36,9 +39,9 @@ const isUser = () =>{
     const emailField = document.getElementById('email').value
     const passwordField = document.getElementById('psw').value
     const storedUsers = JSON.parse(localStorage.users);
-    console.log(storedUsers);
-    console.log(storedUsers[0].email);
-    console.log(storedUsers[0].password);
+    // console.log(storedUsers);
+    // console.log(storedUsers[0].email);
+    // console.log(storedUsers[0].password);
    //if(emailField === storedUsers.email &&  passwordField === storedUsers.password ){
    //    console.log('true');
    //    return true;}else{
@@ -58,8 +61,8 @@ const isUser = () =>{
 
     users =[];
     
-    if(JSON.parse(localStorage.users).length >0){
-        let users = JSON.parse(localStorage.users);}
+    // if(JSON.parse(localStorage.users).length >0){
+    //     let users = JSON.parse(localStorage.users);}
         let user_data = {};
         user_data.name= username;
         user_data.email= email;
