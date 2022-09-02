@@ -32,7 +32,7 @@ const header01 = document.querySelectorAll(".section-header")[0];
 const header02 = document.querySelectorAll(".section-header")[1];
 const header03 = document.querySelectorAll(".section-header")[2];
 const userDataContainer = document.querySelector(".userDataContainer");
-const userName = document.querySelector(".userDataContainer .userName");
+const userName2 = document.querySelector(".userDataContainer .userName2");
 const albumInfoTitle = document.querySelector(".albumInfoTitle");
 const albumInfoArtist = document.querySelector(".albumInfoArtist");
 const likeBtn = document.querySelector(".likeBtn");
@@ -55,10 +55,6 @@ const fetchsong = (songsurl) => {
         console.log(songs.data)
         let popularsong = document.getElementById("popularsongs")
 
-       
-
-
-       
            for (let i = 0; i < songs.data.length; i++) {
             const track = songs.data[i];
             
@@ -92,13 +88,16 @@ const getAlbum = () => {
     .then(response => response.json())
     .then(artist => {
         let artistname = document.querySelector(".artist-name")
+        artistname.innerHTML = artist.name
+        console.log(artist)
         console.log(artistname)
         let songsurl = artist.tracklist
 
+        let artistimg = document.getElementById('artist-picture')
+        console.log(artistimg)
+        artistimg.style.backgroundImage = `url(${artist.picture_xl})`
        
        
-        artistname.innerText = urlParams.get("artist-name")
-        console.log(artist)
 
        let fans = document.getElementById("fans-number")
        fans.innerHTML = `${artist.nb_fan} monthly listener`
@@ -308,14 +307,22 @@ const initialMusic = (data) => {
     //}
     changePlayerInfo();
 }
+
+
+/*
 const loadInitialContent = () =>{        
-    musicOnLoad();
-    loadSmallTracks("busta");
-    loadTracks("queen");
+   musicOnLoad();
+   loadSmallTracks("busta");
+   loadTracks("queen");
 }
+*/
+
 const showUser = ()=>{
-    userName.innerText = JSON.parse(localStorage.activeUser); 
+    userName2.innerText = JSON.parse(localStorage.activeUser); 
+    userName1.innerText = JSON.parse(localStorage.activeUser); 
 }
+
+
 window.onload = () => {
 
     getAlbum();
@@ -332,7 +339,7 @@ window.onload = () => {
     likeBtnF.addEventListener("click", like);
     volumeContainer.addEventListener("click", volumeChange);
     likedArr = JSON.parse(localStorage.getItem("liked"));
-    loadInitialContent();
+ //   loadInitialContent();
     /////Music Player^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     showUser();
 }

@@ -364,6 +364,26 @@ margin-bottom: 4px;
 
 }
 
+.albums{
+    background: rgb(0,0,0);
+    background: linear-gradient(360deg, rgba(0,0,0,1) 46%, rgba(57,57,57,1) 88%);
+}
+
+
+.album-cover{
+    background-image: url();
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 40vh;
+}
+.artist-name{
+    font-size: 100px;
+}
+
 
 
 
