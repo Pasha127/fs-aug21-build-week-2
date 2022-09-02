@@ -55,7 +55,10 @@ const getAlbum = () => {
         console.log(artistname)
         let songsurl = artist.tracklist
 
-       
+
+        let artistimg = document.getElementById('artist-picture')
+        console.log(artistimg)
+        artistimg.style.backgroundImage = `url(${artist.picture_xl})`
        
         artistname.innerText = urlParams.get("artist-name")
         console.log(artist)
