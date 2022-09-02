@@ -11,7 +11,11 @@
     <!--icon bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     
-    
+    <style>
+      body{
+        color: #ebebeb;
+      }
+    </style>
     
     <title>Spotify</title>
     <link rel="icon" type="image/x-icon" href="./spotify_icon.ico">
@@ -107,94 +111,76 @@
 
 
     </div>
-    <div class="container-fluid main-container album-main p-0">
-    <nav class="navbar justify-content-between navbar-transparent">
-        <form class="form-inline mr-auto">
-          <button class="btn btn-circle btn-sm bg-dark btn-outline-secondary mr-5" type="button"> 
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-              </svg>
-        </button>
-          <button class="btn btn-circle  bg-dark btn-outline-secondary" type="button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-              </svg>
+    <div class="container-fluid p-0">
+      <div class="album-cover" id="artist-picture">
+    <nav>
+      <div class="container">
+        <div class="arrows">
+          <form class="form-inline mr-auto">
+            <button class="btn btn-circle btn-sm bg-dark btn-outline-secondary mr-5" type="button"> 
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                </svg>
           </button>
-        </form>
-        <button type="button" class="d-flex btn btn-dark btn-custom btn-sm border-radius">
-            <img height="16px" width="16px" style="object-fit: scale-down; border-radius:16px;" src="https://images.unsplash.com/photo-1661768662059-4c4edfd09346?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" 
-            alt="photo">
-            <div style="
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                overflow: hidden;
-                width:50px;
-            ">song name
-            </div>
-
-
-
-        </button>
+            <button class="btn btn-circle  bg-dark btn-outline-secondary" type="button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
+            </button>
+          </form>
+        </div>
+        <div class="userDataContainer">   
+          <img class="userImg" src="https://miro.medium.com/max/700/1*hFwwQAW45673VGKrMPE2qQ.png">
+           <div class="userName">TestUser</div>         
+       </div>
+      </div>
     </nav>
-        <div class="container ml-0">
-            <div class="row">
-                <div class="col-2" id="album-cover">
-                    <img height="150vh" src="https://images.unsplash.com/photo-1611572840901-43b748ac2e3d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=465&q=80"
-                     alt="this is photo">
-                </div>
-                
-                <div class="d-flex align-items-end" id="artist">
-                    <div>
-                        <h6 class="text-white">album</h6>
-                        <h2 class="text-white">Bohemian Rhapsody (The original soundtrack)</h2>
-                        <div class="d-flex">
-                        <img class="small-img" src="https://images.unsplash.com/photo-1661768662059-4c4edfd09346?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" 
-                         alt="photo">
-                         <h6 class="text-white"><strong>Queen</strong><strong>.</strong>2018 <strong>.</strong>22 songs,1hr and 19 min </h6>
-                        </div>
-                    </div>
-                </div>
-              </div>
-
-        </div>
-      <main class="faded mt-5">
-      <div class="container ml-3">
-        <div class="row d-flex d-inline">
-            <div class="player mt-3"><span>Play</span></div>
-            <div class="d-inline mt-4 ml-5">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
-                  </svg>
-            </div>
-            <div class="d-inline mt-4 ml-5">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
-                    <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
-                  </svg>
-            </div> 
-        </div>
-      </div>
-      <div class="container-fluid justify-content-between" >
     
-        <div class="row ml-5 mr-5 mb-0 justify-content-between">
-            <div class="row mt-4 mb-0">
-                <div class="mt-4 mr-5 mb-0">#</div>
-                <div class="mt-4  mb-0">TITLE</div>
-            </div >
-            <div class="mt-5">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
-                    <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
-                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
-                  </svg>
-            </div>
-
-        </div>
+    <div class="artist-info">
+    <p class="text-white"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="blue" class="bi bi-patch-check-fill" viewBox="0 0 16 16">
+      <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
+    </svg> Verified Artist</p>
+    <h2 class="text-white artist-name">Queen</h2>
+    <p class="text-white" id="fans-number">12,233,123 Monthly listners</p>
+    </div>
+    </div>
+    <div class="container-fluid albums">
+    
+      <div class="row align-items-center pt-5 ml-3">
+        <div class="pause-button d-flex align-items-center justify-content-center"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-pause-fill" viewBox="0 0 16 16">
+          <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/>
+        </svg></div>
+        <button type="button" class="btn btn-outline-secondary ml-3">Follow</button>
+        <svg xmlns="http://www.w3.org/2000/svg"  width="16" height="16" fill="currentColor" class="bi bi-three-dots ml-3" viewBox="0 0 16 16">
+          <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+        </svg>
       </div>
-      <hr color="black" >
-        <div class=" mr-5 ml-5 " id="track-list">
-       
+    <div class="row mt-3">
+      <div class="col-8">
+      <h2>Popular</h2>
+      <div id="popularsongs">
+    
+      </div>
+        
+        <p class="text-white ml-5"> See More</p>
+        <p class="text-white mt-5"><strong> Popular realses</strong></p>
+    </div>
+    <div class="col-4">
+      <h2>Artist pick</h2>
+      <div class="row">
+        <div>
+          <img width="80px" height="80px" class="ml-4 mt-3"  src="https://images.unsplash.com/photo-1659544623522-73ee0920af32?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8aG1lbnZRaFVteE18fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" alt="">
+        </div>
+        <div class="mt-3 ml-4">
+          <p> <img height="40px" width="40px" class="small-img" src="https://images.unsplash.com/photo-1660684118903-4f9f66223353?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDEyfGhtZW52UWhVbXhNfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt=""> posted by artist</p>
+          <p class="p-0 m-0">artist best of</p>
+          <p class="p-0 m-0">Playlist</p>
+        </div>
       </div>
     </div>
-  </main> 
+    </div>
+    </div>
+    </div>
   <div class="userDataContainer">   
     <img class="userImg" src="https://miro.medium.com/max/700/1*hFwwQAW45673VGKrMPE2qQ.png">
      <div class="userName">TestUser</div>         
