@@ -1,23 +1,37 @@
 const logIn = () =>{
-    if(document.getElementById("email").value){let username = document.getElementById('email').value;}else{console.log("undefined")}
-    if(document.getElementById('psw').value){let email = document.getElementById('psw').value}else{console.log("undefined")}
+    // if(document.getElementById("email").value){let username = document.getElementById('email').value;}else{console.log("undefined")}
+    // if(document.getElementById('psw').value){let email = document.getElementById('psw').value}else{console.log("undefined")}
     //senderror();
     const go = isUser()
     if(go){
     
     const email = document.getElementById('email').value
     const password = document.getElementById('psw').value
-      
     const activeUser = email;
-   
     localStorage.setItem("activeUser",JSON.stringify(activeUser))
-    document.location = "./home-page.html"
-}else{alert("Please enter a valid Username/email or sign up.")}
+    if(document.querySelector("#email").value ===""|| document.querySelector("#email").value==="Email address or user name"){
+        alert("email cannot be empty")}
+        else if(document.querySelector("#psw").value ===""|| document.querySelector("#psw").value==="Password"){
+        alert("password cannot be empty")}
+        else if(document.querySelector("#email").value!==localStorage.getItem("email")){
+            alert("Please enter a valid Username/email or sign up.")}
+            else if(password!==localStorage.getItem("password")){
+                alert("Please enter a valid password.")}
+                
+                else{
+                    
+                    
+                    document.location = "./home-page.html"
+                }
+                console.log(localStorage.getItem("email"))
     
     document.getElementById('email').value="";
     document.getElementById('psw').value="";
 
 }
+}
+
+
 const isUser = () =>{
     const emailField = document.getElementById('email').value
     const passwordField = document.getElementById('psw').value
@@ -35,7 +49,7 @@ const isUser = () =>{
 
     const saveData = () =>{
     localStorage.users = JSON.stringify("placeholder")
-    //senderror();
+    senderror();
     username = document.getElementById('name').value
     email = document.getElementById('email').value
     password = document.getElementById('password').value
@@ -60,7 +74,7 @@ const isUser = () =>{
     document.getElementById('email').value="";
     document.getElementById('password').value="";
     document.getElementById('confirm-password').value="";
-    document.location = "./login-page.html"
+    // document.location = "./login-page.html"
 
 } 
 
@@ -82,7 +96,14 @@ alert("email cannot be empty")
 }else if(document.querySelector("#password").value ===""|| document.querySelector("#password").value==="password"){
 alert("password cannot be empty")
 }else if(document.querySelector("#confirm-password").value ===""||
-document.querySelector("#confirm-password").value==="NConfirm Password"){
+document.querySelector("#confirm-password").value==="Confirm Password"){
 alert("confirm password cannot be empty")
-}}
+
+}else if(document.querySelector("#confirm-password").value!== document.querySelector("#password").value || document.querySelector("#confirm-password").value!== document.querySelector("#confirm-password").value==="Confirm Password") {
+    alert("password and confirm password should match")
+}else{
+    document.location = "./login-page.html"
+}
+}
+
 
