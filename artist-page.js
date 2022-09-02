@@ -55,10 +55,6 @@ const fetchsong = (songsurl) => {
         console.log(songs.data)
         let popularsong = document.getElementById("popularsongs")
 
-       
-
-
-       
            for (let i = 0; i < songs.data.length; i++) {
             const track = songs.data[i];
             
@@ -92,13 +88,16 @@ const getAlbum = () => {
     .then(response => response.json())
     .then(artist => {
         let artistname = document.querySelector(".artist-name")
+        artistname.innerHTML = artist.name
+        console.log(artist)
         console.log(artistname)
         let songsurl = artist.tracklist
 
+        let artistimg = document.getElementById('artist-picture')
+        console.log(artistimg)
+        artistimg.style.backgroundImage = `url(${artist.picture_xl})`
        
        
-        artistname.innerText = urlParams.get("artist-name")
-        console.log(artist)
 
        let fans = document.getElementById("fans-number")
        fans.innerHTML = `${artist.nb_fan} monthly listener`
@@ -308,14 +307,21 @@ const initialMusic = (data) => {
     //}
     changePlayerInfo();
 }
+
+
+/*
 const loadInitialContent = () =>{        
-    musicOnLoad();
-    loadSmallTracks("busta");
-    loadTracks("queen");
+   musicOnLoad();
+   loadSmallTracks("busta");
+   loadTracks("queen");
 }
+*/
+/*
 const showUser = ()=>{
     userName.innerText = JSON.parse(localStorage.activeUser); 
 }
+
+*/
 window.onload = () => {
 
     getAlbum();
@@ -332,9 +338,9 @@ window.onload = () => {
     likeBtnF.addEventListener("click", like);
     volumeContainer.addEventListener("click", volumeChange);
     likedArr = JSON.parse(localStorage.getItem("liked"));
-    loadInitialContent();
+ //   loadInitialContent();
     /////Music Player^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    showUser();
+ //   showUser();
 }
 
 ////Music Player End----------------------------------------------------------------------------------------------------------------
