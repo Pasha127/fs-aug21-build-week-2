@@ -309,6 +309,7 @@ const initialMusic = (data) => {
 }
 
 
+
 /*
 const loadInitialContent = () =>{        
    musicOnLoad();
@@ -317,11 +318,21 @@ const loadInitialContent = () =>{
 }
 */
 
-const showUser = ()=>{
+const showUser2 = ()=>{
     userName2.innerText = JSON.parse(localStorage.activeUser); 
     userName1.innerText = JSON.parse(localStorage.activeUser); 
 }
 
+
+
+// const loadInitialContent = () =>{        
+//     musicOnLoad();
+//     loadSmallTracks("busta");
+//     loadTracks("queen");
+// }
+// const showUser = ()=>{
+//     userName.innerText = JSON.parse(localStorage.activeUser); 
+// }
 
 window.onload = () => {
 
@@ -339,9 +350,14 @@ window.onload = () => {
     likeBtnF.addEventListener("click", like);
     volumeContainer.addEventListener("click", volumeChange);
     likedArr = JSON.parse(localStorage.getItem("liked"));
+
+
  //   loadInitialContent();
+
     /////Music Player^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    showUser();
+
+    showUser2();
+
 }
 
 ////Music Player End----------------------------------------------------------------------------------------------------------------
