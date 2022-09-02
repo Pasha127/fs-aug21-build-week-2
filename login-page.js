@@ -11,6 +11,7 @@ const logIn = () =>{
     const activeUser = email;
    
     localStorage.setItem("activeUser",JSON.stringify(activeUser))
+    document.location = "./home-page.html"
 }else{alert("Please enter a valid Username/email or sign up.")}
     
     document.getElementById('email').value="";
