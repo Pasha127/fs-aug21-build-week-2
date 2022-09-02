@@ -29,7 +29,7 @@ const isUser = () =>{
    //    return true;}else{
    //        console.log('false')
    //        return false;}
-    return true;
+    return true; /// temp. fix
 }
 
     const saveData = () =>{
