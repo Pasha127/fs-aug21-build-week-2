@@ -4,11 +4,25 @@
     font-size: 30px;
 }
 
-.container {
-    width: 25%;
-    margin-left: auto;
-    margin-right: auto;
-    align-items: center;
+@media(min-width: 440px){
+    
+    .container {
+        width: 425px;
+        margin-left: auto;
+        margin-right: auto;
+        align-items: center;
+    }
+
+}
+@media(max-width: 439px){
+    
+    .container {
+        width: 225px;
+        margin-left: auto;
+        margin-right: auto;
+        align-items: center;
+    }
+
 }
 
 .button h6 {
