@@ -308,14 +308,14 @@ const initialMusic = (data) => {
     //}
     changePlayerInfo();
 }
-const loadInitialContent = () =>{        
-    musicOnLoad();
-    loadSmallTracks("busta");
-    loadTracks("queen");
-}
-const showUser = ()=>{
-    userName.innerText = JSON.parse(localStorage.activeUser); 
-}
+// const loadInitialContent = () =>{        
+//     musicOnLoad();
+//     loadSmallTracks("busta");
+//     loadTracks("queen");
+// }
+// const showUser = ()=>{
+//     userName.innerText = JSON.parse(localStorage.activeUser); 
+// }
 window.onload = () => {
 
     getAlbum();
@@ -332,9 +332,9 @@ window.onload = () => {
     likeBtnF.addEventListener("click", like);
     volumeContainer.addEventListener("click", volumeChange);
     likedArr = JSON.parse(localStorage.getItem("liked"));
-    loadInitialContent();
+    // loadInitialContent();
     /////Music Player^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    showUser();
+    // showUser();
 }
 
 ////Music Player End----------------------------------------------------------------------------------------------------------------

@@ -35,13 +35,13 @@ const isUser = () =>{
 
     const saveData = () =>{
     localStorage.users = JSON.stringify("placeholder")
-    //senderror();
+    senderror();
     username = document.getElementById('name').value
     email = document.getElementById('email').value
     password = document.getElementById('password').value
     passwordConfirmation = document.getElementById('confirm-password').value
     
-
+        
     users =[];
     
     if(JSON.parse(localStorage.users).length >0){
