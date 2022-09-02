@@ -32,7 +32,7 @@ const header01 = document.querySelectorAll(".section-header")[0];
 const header02 = document.querySelectorAll(".section-header")[1];
 const header03 = document.querySelectorAll(".section-header")[2];
 const userDataContainer = document.querySelector(".userDataContainer");
-const userName = document.querySelector(".userName");
+const userName = document.querySelector(".userDataContainer .userName");
 const albumInfoTitle = document.querySelector(".albumInfoTitle");
 const albumInfoArtist = document.querySelector(".albumInfoArtist");
 const likeBtn = document.querySelector(".likeBtn");
@@ -313,7 +313,9 @@ const loadInitialContent = () =>{
     loadSmallTracks("busta");
     loadTracks("queen");
 }
-
+const showUser = ()=>{
+    userName.innerText = JSON.parse(localStorage.activeUser); 
+}
 window.onload = () => {
 
     getAlbum();
@@ -332,6 +334,7 @@ window.onload = () => {
     likedArr = JSON.parse(localStorage.getItem("liked"));
     loadInitialContent();
     /////Music Player^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    showUser();
 }
 
 ////Music Player End----------------------------------------------------------------------------------------------------------------

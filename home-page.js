@@ -32,11 +32,15 @@ const header01 = document.querySelectorAll(".section-header")[0];
 const header02 = document.querySelectorAll(".section-header")[1];
 const header03 = document.querySelectorAll(".section-header")[2];
 const userDataContainer = document.querySelector(".userDataContainer");
-const userName = document.querySelector(".userName");
+const userName = document.querySelector(".userDataContainer .userName");
 const albumInfoTitle = document.querySelector(".albumInfoTitle");
 const albumInfoArtist = document.querySelector(".albumInfoArtist");
 const likeBtn = document.querySelector(".likeBtn");
 const likeBtnF = document.querySelector(".likeBtnF");
+
+////Username
+//userName.innerText = JSON.parse(localStorage.
+
 
 //for testing
 //const queenSong = new Audio("./queen-another-one-bites-the-dust.mp3");
@@ -46,8 +50,8 @@ const likeBtnF = document.querySelector(".likeBtnF");
 //////
 
 
-const showUser = (user)=>{
-    userName.innerText = user; 
+const showUser = ()=>{
+    userName.innerText = JSON.parse(localStorage.activeUser); 
 }
 const playerClick = ()=> {
     playBtn.classList.toggle("d-none");
@@ -362,6 +366,7 @@ window.onload = () => {
     volumeContainer.addEventListener("click", volumeChange);
     likedArr = JSON.parse(localStorage.getItem("liked"));
     loadInitialContent();
+    showUser();
     
 }
 
