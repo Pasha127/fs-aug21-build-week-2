@@ -285,7 +285,7 @@ margin-bottom: 4px;
     bottom: 25px;
     border-radius: 4px;
     justify-content: left;
-    transform: translate(63vw, 25px);
+    transform: translate(40vw, 0px);
 
 }
 
@@ -304,9 +304,10 @@ margin-bottom: 4px;
     background-color: var(--spotify-progress-gray-front);
     position: absolute;
     height: 6px;
-    width: 2vw;
+    width: 100%;
     bottom: 0px;
     border-radius: 4px;
+    transform: translate(0px, 0px);
 }
 
 @media(min-width: 1400px){

@@ -153,22 +153,13 @@ const setProgress = (e) => {
     songList[currentSongIndex].currentTime = percentage * duration;
   }
   
-const playRick = () => {
-    rickRoll.play();
-}
-//const playSong = (input)=>{
-//    console.log("playSong input:", input);
-//    const song = new Audio(input);
-//    song.play();
-//    console.log("music");
-//}
 const volumeChange = (e) => {
     const widthF = volumeBarFront.offsetWidth;
     const widthB = volumeContainer.offsetWidth;
     const clickX = e.offsetX;
     const percentage = (clickX/widthB);    
     const volume = songList[currentSongIndex].volume;
-  
+    volumeBarFront.style.width = (percentage*100)+"%"; 
     songList[currentSongIndex].volume = percentage;
 }
 
@@ -303,8 +294,8 @@ const makeCards = function (r,n=16) {
         <img src="${r.data[i].album.cover_medium}" class="card-img-top" alt="...">
         <div class="card-body p-0  bg-black">
         
-        <h5 class="card-title text-truncate mb-1 pt-2"><a href="./album-page.html?album-id=${r.data[i].album.id}">${r.data[i].title}</a></h5>
-        <p class="card-text"><a href="./artist-page.html?album-id=${r.data[i].artist.id}">${r.data[i].artist.name}</a></p>                                              
+        <h5 class="card-title text-truncate mb-1 pt-2"><a href="./album-page.html?album-id=${r.data[i].artist.id}&album-id=${r.data[i].album.id}">${r.data[i].title}</a></h5>
+        <p class="card-text"><a href="./artist-page.html?album-id=${r.data[i].artist.id}&album-id=${r.data[i].album.id}">${r.data[i].artist.name}</a></p>                                              
         </div>`;
         
         newCard.querySelector(".card").prepend(hoverBtn);  
