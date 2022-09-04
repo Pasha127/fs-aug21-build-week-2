@@ -428,9 +428,6 @@ window.onload = () => {
     likedArr = JSON.parse(localStorage.getItem("liked"));
     artistPlayBtn.addEventListener("click", playerClick);
 
-
- //   loadInitialContent();
-
     /////Music Player^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
     showUser2();

@@ -386,6 +386,9 @@ margin-bottom: 4px;
 .artistPageSong{
     cursor: pointer;
 }
+.albumPageSong{
+    cursor: pointer;
+}
 
 
 

@@ -39,6 +39,7 @@ const albumInfoTitle = document.querySelector(".albumInfoTitle");
 const albumInfoArtist = document.querySelector(".albumInfoArtist");
 const likeBtn = document.querySelector(".likeBtn");
 const likeBtnF = document.querySelector(".likeBtnF");
+const artistPlayBtn = document.querySelector(".pause-button.d-flex.align-items-center.justify-content-center");
 //element Definitions End----------------------------------------------------
 const urlParams = new URLSearchParams(window.location.search);
 const options = {
@@ -57,7 +58,7 @@ const getAlbum = () => {
         let artistInfo = document.getElementById("artist")
         let trackslist = document.getElementById("track-list")
       
-            
+            console.log(album);
             albumCover.innerHTML = `<img class="cover-image" width="100%" src=${album.cover_medium}
             alt="album cover">`
             
@@ -71,8 +72,12 @@ const getAlbum = () => {
             </div>`
          for (let i = 0; i < album.tracks.data.length; i++) {
             const track = album.tracks.data[i];
+
+            //for music player
+            songList.push(new Audio(track.preview));
+            songDataArr.push(track);
             
-            trackslist.innerHTML +=`<div class="row justify-content-between" >
+            trackslist.innerHTML +=`<div class="row justify-content-between albumPageSong" >
             <div class="d-flex">
             <div class="mt-2 mr-5">${i+1}</div>
             <div>
@@ -83,13 +88,18 @@ const getAlbum = () => {
             <div class="mr-4">${convertToMin(track.duration)} min</div>        
             </div>`
          }
-        
+         const albumSongs = document.querySelectorAll(".albumPageSong");
+         for (song of albumSongs){
+             song.addEventListener("click", switchToTrack);
+         }
     })
     .catch(err => console.log(err))}
 ////Music Player Start--------------------------------------------------------------------------------------------------------------
 const playerClick = ()=> {
     playBtn.classList.toggle("d-none");
     pauseBtn.classList.toggle("d-none");
+    artistPlayBtn.querySelector(".bi-pause-fill").classList.toggle("d-none");
+    artistPlayBtn.querySelector(".bi-play-fill").classList.toggle("d-none");
     if(!playBtn.classList.contains("d-none")){
         pauseSong();
         //console.log('pause');
@@ -99,7 +109,7 @@ const playerClick = ()=> {
     }
 }
 const addSong = (data) =>{    
-    //console.log(data.preview);
+    console.log(data.preview);
     songList[currentSongIndex].pause()
     currentSongIndex=songList.length-1;           
     //for(element of data.data){
@@ -108,19 +118,35 @@ const addSong = (data) =>{
     //}
     if(pauseBtn.classList.contains("d-none")){
     playBtn.classList.toggle("d-none");
-    pauseBtn.classList.toggle("d-none");}
+    pauseBtn.classList.toggle("d-none");
+    artistPlayBtn.querySelector(".bi-pause-fill").classList.toggle("d-none");
+    artistPlayBtn.querySelector(".bi-play-fill").classList.toggle("d-none");
+}
     addSongInfo(data);
 
     nextSong();
     changePlayerInfo();
 }
 const addSongInfo = (data) =>{
-    console.log('addsonginfo input', data)
+    //console.log('addsonginfo input', data)
     songDataArr.push(data)
     //for(element of data.data){songDataArr.push(element)};
     //console.log('addsonginfo dataArr',songDataArr);
 }
-
+const switchToTrack = (e) =>{
+    if(isRepeating){repeatClick();
+        repeatedSong.pause();
+        repeatedSong.currentTime = 0;
+    }
+        songList[currentSongIndex].pause();
+        songList[currentSongIndex].currentTime = 0;
+        if(e.target.classList.contains("albumPageSong")){
+        currentSongIndex = Number(e.target.querySelector(".mt-2.mr-5").innerText)-1;
+    }else{currentSongIndex = Number(e.target.closest(".albumPageSong").querySelector(".mt-2.mr-5").innerText)-1;}
+    if(pauseBtn.classList.contains("d-none")){
+        playerClick();}else{
+        playMusic();};
+}
 const nextSong = () =>{
     if(isRepeating){repeatClick();
         repeatedSong.pause();
@@ -149,7 +175,10 @@ const prevSong = () =>{
     playMusic()
     if(pauseBtn.classList.contains("d-none")){
         playBtn.classList.toggle("d-none");
-        pauseBtn.classList.toggle("d-none");}
+        pauseBtn.classList.toggle("d-none");
+        artistPlayBtn.querySelector(".bi-pause-fill").classList.toggle("d-none");
+    artistPlayBtn.querySelector(".bi-play-fill").classList.toggle("d-none");
+    }
 }
 const pauseSong = () =>{
     songList[currentSongIndex].pause()
@@ -188,16 +217,21 @@ const playMusic = () => {
         songList[currentSongIndex].addEventListener('timeupdate', durTime);
         songList[currentSongIndex].play();
         changePlayerInfo();
+        const artistSongs = document.querySelectorAll(".albumPageSong");
+        for(song of artistSongs){song.style.color = "#ffffff";}
+        artistSongs[currentSongIndex].style.color = "#1fdf64";
 }
+
+
 }
 const changePlayerInfo = () =>{
     if(isRepeating){repeatClick();
         playerArt.setAttribute('src', songDataArr[currentSongIndex].album.cover);
-        albumInfoTitle.innerText = songDataArr[currentSongIndex].album.title;
+        albumInfoTitle.innerText = songDataArr[currentSongIndex].title;
         albumInfoArtist.innerText = songDataArr[currentSongIndex].artist.name;
     }else{
     playerArt.setAttribute('src', songDataArr[currentSongIndex].album.cover);
-    albumInfoTitle.innerText = songDataArr[currentSongIndex].album.title;
+    albumInfoTitle.innerText = songDataArr[currentSongIndex].title;
     albumInfoArtist.innerText = songDataArr[currentSongIndex].artist.name;
     }
 }
@@ -296,7 +330,7 @@ const durTime = (e) => {
         remainingTime.innerHTML = min_d +':'+ sec_d;
     }
 ////Music Player End----------------------------------------------------------------------------------------------------------------
-    
+     
 const optionsB = {
     method: 'GET',
 	headers: {
@@ -397,7 +431,8 @@ const showUser1 = ()=>{
         likeBtnF.addEventListener("click", like);
         volumeContainer.addEventListener("click", volumeChange);
         likedArr = JSON.parse(localStorage.getItem("liked"));
-     //   loadInitialContent();
+        artistPlayBtn.addEventListener("click", playerClick);
+
         /////Music Player^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
         showUser1();
     }
