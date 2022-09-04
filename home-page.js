@@ -4,6 +4,8 @@ let songList = [];
 let currentSongIndex = 0;
 let songDataArr = [];
 let likedArr = [];
+let isRepeating = false;
+let repeatedSong = {};
 
 
 const sideRecs = document.querySelectorAll(".sideRec");
@@ -88,20 +90,30 @@ const addSongInfo = (data) =>{
 }
 
 const nextSong = () =>{
+    if(isRepeating){repeatClick();
+        repeatedSong.pause();
+        repeatedSong.currentTime = 0;
+    }else{
     songList[currentSongIndex].pause();
     songList[currentSongIndex].currentTime = 0;
     currentSongIndex++;
     if(currentSongIndex > songList.length-1){currentSongIndex = 0;}
+}
     playMusic()
     if(pauseBtn.classList.contains("d-none")){
         playBtn.classList.toggle("d-none");
         pauseBtn.classList.toggle("d-none");}
 }
 const prevSong = () =>{
+    if(isRepeating){repeatClick();
+        repeatedSong.pause();
+        repeatedSong.currentTime = 0;
+    }else{
     songList[currentSongIndex].pause();
     songList[currentSongIndex].currentTime = 0;
     currentSongIndex--;
     if(currentSongIndex < 0){currentSongIndex = songList.length-1}
+    }
     playMusic()
     if(pauseBtn.classList.contains("d-none")){
         playBtn.classList.toggle("d-none");
@@ -123,25 +135,52 @@ const like = () =>{
 const clearLikes = () =>{
     localStorage.setItem("liked", []);
 }
+const changeRepeatColor = () =>{
+    repeatBtn.classList.toggle("buttonSelected");
+}
+const repeatClick = () =>{
+    changeRepeatColor();
+    if(isRepeating){isRepeating = false;}else{
+        isRepeating = true;
+        repeatedSong = songList[currentSongIndex]
+    }
+}
 const playMusic = () => {
-    console.log('play music current song in song list',songList[currentSongIndex]);
-    songList[currentSongIndex].addEventListener('timeupdate', updateProgress);
-    songList[currentSongIndex].addEventListener('timeupdate', durTime);
-    songList[currentSongIndex].play();
-    changePlayerInfo();
-    
+    if(isRepeating){
+        repeatedSong.addEventListener('timeupdate', updateProgress);
+        repeatedSong.addEventListener('timeupdate', durTime);
+        repeatedSong.play();
+        changePlayerInfo();
+    }else{
+        songList[currentSongIndex].addEventListener('timeupdate', updateProgress);
+        songList[currentSongIndex].addEventListener('timeupdate', durTime);
+        songList[currentSongIndex].play();
+        changePlayerInfo();
+}
 }
 const changePlayerInfo = () =>{
+    if(isRepeating){repeatClick();
+        playerArt.setAttribute('src', songDataArr[currentSongIndex].album.cover);
+        albumInfoTitle.innerText = songDataArr[currentSongIndex].album.title;
+        albumInfoArtist.innerText = songDataArr[currentSongIndex].artist.name;
+    }else{
     playerArt.setAttribute('src', songDataArr[currentSongIndex].album.cover);
     albumInfoTitle.innerText = songDataArr[currentSongIndex].album.title;
     albumInfoArtist.innerText = songDataArr[currentSongIndex].artist.name;
+    }
 }
 const updateProgress = (e) => {   
     const { duration, currentTime } = e.srcElement;
     const progressPercent = (currentTime / duration) * 100;
     progressBarFront.style.width = `${progressPercent}%`;
     if(progressPercent === 100){
-        nextSong()
+        if(isRepeating){
+            repeatedSong.currentTime = 0;
+            playMusic();
+            repeatClick();
+        }else{
+            nextSong();
+        }
     }
 
       
@@ -351,12 +390,10 @@ const loadInitialContent = () =>{
     loadSmallTracks("busta");
     loadTracks("queen");
 }
-const changeButtonColor = (e) =>{
-    e.target.classList.toggle("buttonSelected");
-}
+
 
 window.onload = () => {
-    repeatBtn.addEventListener("click", changeButtonColor);
+    repeatBtn.addEventListener("click", repeatClick);
     playBtn.addEventListener("click", playerClick);
     pauseBtn.addEventListener("click", playerClick);
     searchBtn.addEventListener("click", showHideSearch);
