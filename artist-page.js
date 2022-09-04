@@ -39,6 +39,7 @@ const albumInfoTitle = document.querySelector(".albumInfoTitle");
 const albumInfoArtist = document.querySelector(".albumInfoArtist");
 const likeBtn = document.querySelector(".likeBtn");
 const likeBtnF = document.querySelector(".likeBtnF");
+const artistPlayBtn = document.querySelector(".pause-button.d-flex.align-items-center.justify-content-center");
 //element Definitions End----------------------------------------------------
 const urlParams = new URLSearchParams(window.location.search);
 const options = {
@@ -54,26 +55,38 @@ const fetchsong = (songsurl) => {
     .then(response => response.json())
     .then(songs => {
 
-        console.log(songs.data)
+        //console.log(songs.data)
         let popularsong = document.getElementById("popularsongs")
 
            for (let i = 0; i < songs.data.length; i++) {
             const track = songs.data[i];
-            
+            let newRand = Math.floor(Math.random()*100);
+            newRand = newRand.toString();
+            console.log(newRand)
+            //for music player
+            songList.push(new Audio(songs.data[i].preview));
+            songDataArr.push(songs.data[i]);
            
-            console.log(track)
+            //console.log(track)
             popularsong.innerHTML += `
-           <div class="row justify-content-between mt-3" >
+           <div class="row justify-content-between mt-3 artistPageSong" >
            <div>
             <span class="ml-5 text-white">${i+1}</span>
             <img height="40px" width="40px" class="ml-3" src="${track.album.cover_medium}" alt="">
             <span class="ml-3"><strong>${track.title_short}</strong></span>
             </div>
-            <span>monthly lestners</span>
+            <div>
+            <span class="mr-5">monthly listeners:${" " + newRand + ",000"}</span>
             <span>${convertToMin(track.duration)} min</span>
+            </div>
             </div>
             `
            }
+    }).then(()=>{
+        const artistSongs = document.querySelectorAll(".artistPageSong");
+        for (song of artistSongs){
+            song.addEventListener("click", switchToTrack);
+        }
     })
 }
 
@@ -91,12 +104,12 @@ const getAlbum = () => {
     .then(artist => {
         let artistname = document.querySelector(".artist-name")
         artistname.innerHTML = artist.name
-        console.log(artist)
-        console.log(artistname)
+        //console.log(artist)
+        //console.log(artistname)
         let songsurl = artist.tracklist
 
         let artistimg = document.getElementById('artist-picture')
-        console.log(artistimg)
+        //console.log(artistimg)
         artistimg.style.backgroundImage = `url(${artist.picture_xl})`
        
        
@@ -113,11 +126,13 @@ const getAlbum = () => {
 const playerClick = ()=> {
     playBtn.classList.toggle("d-none");
     pauseBtn.classList.toggle("d-none");
+    artistPlayBtn.querySelector(".bi-pause-fill").classList.toggle("d-none");
+    artistPlayBtn.querySelector(".bi-play-fill").classList.toggle("d-none");
     if(!playBtn.classList.contains("d-none")){
         pauseSong();
-        console.log('pause');
+        //console.log('pause');
     }else{
-        console.log('play');        
+        //console.log('play');        
         playMusic();
     }
 }
@@ -131,19 +146,35 @@ const addSong = (data) =>{
     //}
     if(pauseBtn.classList.contains("d-none")){
     playBtn.classList.toggle("d-none");
-    pauseBtn.classList.toggle("d-none");}
+    pauseBtn.classList.toggle("d-none");
+    artistPlayBtn.querySelector(".bi-pause-fill").classList.toggle("d-none");
+    artistPlayBtn.querySelector(".bi-play-fill").classList.toggle("d-none");
+}
     addSongInfo(data);
 
     nextSong();
     changePlayerInfo();
 }
 const addSongInfo = (data) =>{
-    console.log('addsonginfo input', data)
+    //console.log('addsonginfo input', data)
     songDataArr.push(data)
     //for(element of data.data){songDataArr.push(element)};
-    console.log('addsonginfo dataArr',songDataArr);
+    //console.log('addsonginfo dataArr',songDataArr);
 }
-
+const switchToTrack = (e) =>{
+    if(isRepeating){repeatClick();
+        repeatedSong.pause();
+        repeatedSong.currentTime = 0;
+    }
+        songList[currentSongIndex].pause();
+        songList[currentSongIndex].currentTime = 0;
+        if(e.target.classList.contains("artistPageSong")){
+        currentSongIndex = Number(e.target.querySelector(".ml-5.text-white").innerText)-1;
+    }else{currentSongIndex = Number(e.target.closest(".artistPageSong").querySelector(".ml-5.text-white").innerText)-1;}
+    if(pauseBtn.classList.contains("d-none")){
+        playerClick();}else{
+        playMusic();};
+}
 const nextSong = () =>{
     if(isRepeating){repeatClick();
         repeatedSong.pause();
@@ -172,7 +203,10 @@ const prevSong = () =>{
     playMusic()
     if(pauseBtn.classList.contains("d-none")){
         playBtn.classList.toggle("d-none");
-        pauseBtn.classList.toggle("d-none");}
+        pauseBtn.classList.toggle("d-none");
+        artistPlayBtn.querySelector(".bi-pause-fill").classList.toggle("d-none");
+    artistPlayBtn.querySelector(".bi-play-fill").classList.toggle("d-none");
+    }
 }
 const pauseSong = () =>{
     songList[currentSongIndex].pause()
@@ -180,10 +214,10 @@ const pauseSong = () =>{
 const like = () =>{
     likeBtn.classList.toggle("d-none");
     likeBtnF.classList.toggle("d-none");
-    console.log("song data array",songDataArr[currentSongIndex])
-    console.log("liked array prepush",likedArr)
+    //console.log("song data array",songDataArr[currentSongIndex])
+    //console.log("liked array prepush",likedArr)
     likedArr.push({...songDataArr[currentSongIndex]});
-    console.log("liked array post push",likedArr)
+    //console.log("liked array post push",likedArr)
     localStorage.setItem("liked", JSON.stringify(likedArr)) 
     
 }
@@ -211,7 +245,12 @@ const playMusic = () => {
         songList[currentSongIndex].addEventListener('timeupdate', durTime);
         songList[currentSongIndex].play();
         changePlayerInfo();
+        const artistSongs = document.querySelectorAll(".artistPageSong");
+        for(song of artistSongs){song.style.color = "#ffffff";}
+        artistSongs[currentSongIndex].style.color = "#1fdf64";
 }
+
+
 }
 const changePlayerInfo = () =>{
     if(isRepeating){repeatClick();
@@ -356,7 +395,7 @@ const loadInitialContent = () =>{
 
 const showUser2 = ()=>{
     userName2.innerText = JSON.parse(localStorage.activeUser); 
-    userName1.innerText = JSON.parse(localStorage.activeUser); 
+    
 }
 
 
@@ -387,6 +426,7 @@ window.onload = () => {
     likeBtnF.addEventListener("click", like);
     volumeContainer.addEventListener("click", volumeChange);
     likedArr = JSON.parse(localStorage.getItem("liked"));
+    artistPlayBtn.addEventListener("click", playerClick);
 
 
  //   loadInitialContent();

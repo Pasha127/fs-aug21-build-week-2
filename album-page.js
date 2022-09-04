@@ -92,14 +92,14 @@ const playerClick = ()=> {
     pauseBtn.classList.toggle("d-none");
     if(!playBtn.classList.contains("d-none")){
         pauseSong();
-        console.log('pause');
+        //console.log('pause');
     }else{
-        console.log('play');        
+        //console.log('play');        
         playMusic();
     }
 }
 const addSong = (data) =>{    
-    console.log(data.preview);
+    //console.log(data.preview);
     songList[currentSongIndex].pause()
     currentSongIndex=songList.length-1;           
     //for(element of data.data){
@@ -118,7 +118,7 @@ const addSongInfo = (data) =>{
     console.log('addsonginfo input', data)
     songDataArr.push(data)
     //for(element of data.data){songDataArr.push(element)};
-    console.log('addsonginfo dataArr',songDataArr);
+    //console.log('addsonginfo dataArr',songDataArr);
 }
 
 const nextSong = () =>{
@@ -157,10 +157,10 @@ const pauseSong = () =>{
 const like = () =>{
     likeBtn.classList.toggle("d-none");
     likeBtnF.classList.toggle("d-none");
-    console.log("song data array",songDataArr[currentSongIndex])
-    console.log("liked array prepush",likedArr)
+    //console.log("song data array",songDataArr[currentSongIndex])
+    //console.log("liked array prepush",likedArr)
     likedArr.push({...songDataArr[currentSongIndex]});
-    console.log("liked array post push",likedArr)
+    //console.log("liked array post push",likedArr)
     localStorage.setItem("liked", JSON.stringify(likedArr)) 
     
 }
@@ -321,8 +321,6 @@ const initialMusic = (data) => {
 }
 const loadInitialContent = () =>{        
     musicOnLoad();
-    loadSmallTracks("busta");
-    loadTracks("queen");
 }
 
 window.onload = () => {
