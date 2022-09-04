@@ -157,6 +157,7 @@ const playMusic = () => {
         songList[currentSongIndex].play();
         changePlayerInfo();
 }
+volumeSet();
 }
 const changePlayerInfo = () =>{
     if(isRepeating){repeatClick();

@@ -220,9 +220,9 @@ const playMusic = () => {
         const artistSongs = document.querySelectorAll(".albumPageSong");
         for(song of artistSongs){song.style.color = "#ffffff";}
         artistSongs[currentSongIndex].style.color = "#1fdf64";
-}
-
-
+        
+    }
+    volumeSet();
 }
 const changePlayerInfo = () =>{
     if(isRepeating){repeatClick();

@@ -240,6 +240,7 @@ const playMusic = () => {
         repeatedSong.addEventListener('timeupdate', durTime);
         repeatedSong.play();
         changePlayerInfo();
+        
     }else{
         songList[currentSongIndex].addEventListener('timeupdate', updateProgress);
         songList[currentSongIndex].addEventListener('timeupdate', durTime);
@@ -248,9 +249,8 @@ const playMusic = () => {
         const artistSongs = document.querySelectorAll(".artistPageSong");
         for(song of artistSongs){song.style.color = "#ffffff";}
         artistSongs[currentSongIndex].style.color = "#1fdf64";
-}
-
-
+    }  
+    volumeSet();
 }
 const changePlayerInfo = () =>{
     if(isRepeating){repeatClick();
