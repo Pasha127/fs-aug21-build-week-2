@@ -194,13 +194,18 @@ const setProgress = (e) => {
   }
   
 const volumeChange = (e) => {
-    const widthF = volumeBarFront.offsetWidth;
     const widthB = volumeContainer.offsetWidth;
     const clickX = e.offsetX;
     const percentage = (clickX/widthB);    
-    const volume = songList[currentSongIndex].volume;
     volumeBarFront.style.width = (percentage*100)+"%"; 
     songList[currentSongIndex].volume = percentage;
+}
+const volumeSet = ()=>{
+    const widthF = volumeBarFront.offsetWidth;
+    const widthB = volumeContainer.offsetWidth;
+    const percentage = (widthF/widthB);    
+    if(isRepeating){repeatedSong.volume = percentage}else{
+        songList[currentSongIndex].volume = percentage;}
 }
 
 
