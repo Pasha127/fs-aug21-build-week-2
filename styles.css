@@ -597,5 +597,7 @@ height: 20px;
     width: 100%;
     margin-inline: 0;
 }
-
+.buttonSelected{
+    color: var(--spotify-green);
+}
 

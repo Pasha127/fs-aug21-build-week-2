@@ -260,6 +260,7 @@ const linkSearch = (e)=>{
     loadTracks(e.target.innerText);
 }
 
+
 const options = {
     method: 'GET',
 	headers: {
@@ -350,9 +351,12 @@ const loadInitialContent = () =>{
     loadSmallTracks("busta");
     loadTracks("queen");
 }
+const changeButtonColor = (e) =>{
+    e.target.classList.toggle("buttonSelected");
+}
 
 window.onload = () => {
-    
+    repeatBtn.addEventListener("click", changeButtonColor);
     playBtn.addEventListener("click", playerClick);
     pauseBtn.addEventListener("click", playerClick);
     searchBtn.addEventListener("click", showHideSearch);
