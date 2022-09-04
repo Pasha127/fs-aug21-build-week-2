@@ -461,7 +461,7 @@ a{
     border-radius: 50%;
     background-color: green;
 
-
+}
 .logo {
     padding-block: 20px;
 }
@@ -519,7 +519,7 @@ a{
     width: 30px;
     height: 30px;
     padding: 0px 0px;
-    border-radius: 15px;
+   border-radius: 50%;
     font-size: 14px;
     
 }
