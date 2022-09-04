@@ -181,9 +181,7 @@ const updateProgress = (e) => {
         }else{
             nextSong();
         }
-    }
-
-      
+    }      
 }
 
 const setProgress = (e) => {
@@ -191,8 +189,7 @@ const setProgress = (e) => {
     const widthB = progressBarBack.offsetWidth;
     const clickX = e.offsetX;
     const percentage = (clickX/widthB);    
-    const duration = songList[currentSongIndex].duration;
-  
+    const duration = songList[currentSongIndex].duration;  
     songList[currentSongIndex].currentTime = percentage * duration;
   }
   

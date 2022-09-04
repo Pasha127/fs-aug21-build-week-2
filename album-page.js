@@ -5,6 +5,8 @@ let songList = [];
 let currentSongIndex = 0;
 let songDataArr = [];
 let likedArr = [];
+let isRepeating = false;
+let repeatedSong = {};
 
 const sideRecs = document.querySelectorAll(".sideRec");
 const playerButtons   = document.querySelector(".playerButtons");
@@ -85,19 +87,6 @@ const getAlbum = () => {
     })
     .catch(err => console.log(err))}
 ////Music Player Start--------------------------------------------------------------------------------------------------------------
-const like = () =>{
-    likeBtn.classList.toggle("d-none");
-    likeBtnF.classList.toggle("d-none");
-    console.log("song data array",songDataArr[currentSongIndex])
-    console.log("liked array prepush",likedArr)
-    likedArr.push({...songDataArr[currentSongIndex]});
-    console.log("liked array post push",likedArr)
-    localStorage.setItem("liked", JSON.stringify(likedArr)) 
-    
-}
-const clearLikes = () =>{
-    localStorage.setItem("liked", []);
-}
 const playerClick = ()=> {
     playBtn.classList.toggle("d-none");
     pauseBtn.classList.toggle("d-none");
@@ -133,20 +122,30 @@ const addSongInfo = (data) =>{
 }
 
 const nextSong = () =>{
+    if(isRepeating){repeatClick();
+        repeatedSong.pause();
+        repeatedSong.currentTime = 0;
+    }else{
     songList[currentSongIndex].pause();
     songList[currentSongIndex].currentTime = 0;
     currentSongIndex++;
     if(currentSongIndex > songList.length-1){currentSongIndex = 0;}
+}
     playMusic()
     if(pauseBtn.classList.contains("d-none")){
         playBtn.classList.toggle("d-none");
         pauseBtn.classList.toggle("d-none");}
 }
 const prevSong = () =>{
+    if(isRepeating){repeatClick();
+        repeatedSong.pause();
+        repeatedSong.currentTime = 0;
+    }else{
     songList[currentSongIndex].pause();
     songList[currentSongIndex].currentTime = 0;
     currentSongIndex--;
     if(currentSongIndex < 0){currentSongIndex = songList.length-1}
+    }
     playMusic()
     if(pauseBtn.classList.contains("d-none")){
         playBtn.classList.toggle("d-none");
@@ -155,29 +154,66 @@ const prevSong = () =>{
 const pauseSong = () =>{
     songList[currentSongIndex].pause()
 }
-
-const playMusic = () => {
-    console.log('play music current song in song list',songList[currentSongIndex]);
-    songList[currentSongIndex].addEventListener('timeupdate', updateProgress);
-    songList[currentSongIndex].addEventListener('timeupdate', durTime);
-    songList[currentSongIndex].play();
-    changePlayerInfo();
+const like = () =>{
+    likeBtn.classList.toggle("d-none");
+    likeBtnF.classList.toggle("d-none");
+    console.log("song data array",songDataArr[currentSongIndex])
+    console.log("liked array prepush",likedArr)
+    likedArr.push({...songDataArr[currentSongIndex]});
+    console.log("liked array post push",likedArr)
+    localStorage.setItem("liked", JSON.stringify(likedArr)) 
     
 }
+const clearLikes = () =>{
+    localStorage.setItem("liked", []);
+}
+const changeRepeatColor = () =>{
+    repeatBtn.classList.toggle("buttonSelected");
+}
+const repeatClick = () =>{
+    changeRepeatColor();
+    if(isRepeating){isRepeating = false;}else{
+        isRepeating = true;
+        repeatedSong = songList[currentSongIndex]
+    }
+}
+const playMusic = () => {
+    if(isRepeating){
+        repeatedSong.addEventListener('timeupdate', updateProgress);
+        repeatedSong.addEventListener('timeupdate', durTime);
+        repeatedSong.play();
+        changePlayerInfo();
+    }else{
+        songList[currentSongIndex].addEventListener('timeupdate', updateProgress);
+        songList[currentSongIndex].addEventListener('timeupdate', durTime);
+        songList[currentSongIndex].play();
+        changePlayerInfo();
+}
+}
 const changePlayerInfo = () =>{
+    if(isRepeating){repeatClick();
+        playerArt.setAttribute('src', songDataArr[currentSongIndex].album.cover);
+        albumInfoTitle.innerText = songDataArr[currentSongIndex].album.title;
+        albumInfoArtist.innerText = songDataArr[currentSongIndex].artist.name;
+    }else{
     playerArt.setAttribute('src', songDataArr[currentSongIndex].album.cover);
     albumInfoTitle.innerText = songDataArr[currentSongIndex].album.title;
     albumInfoArtist.innerText = songDataArr[currentSongIndex].artist.name;
+    }
 }
 const updateProgress = (e) => {   
     const { duration, currentTime } = e.srcElement;
     const progressPercent = (currentTime / duration) * 100;
     progressBarFront.style.width = `${progressPercent}%`;
     if(progressPercent === 100){
-        nextSong()
-    }
-
-      
+        if(isRepeating){
+            repeatedSong.currentTime = 0;
+            playMusic();
+            repeatClick();
+        }else{
+            nextSong();
+        }
+    }      
 }
 
 const setProgress = (e) => {
@@ -185,12 +221,11 @@ const setProgress = (e) => {
     const widthB = progressBarBack.offsetWidth;
     const clickX = e.offsetX;
     const percentage = (clickX/widthB);    
-    const duration = songList[currentSongIndex].duration;
-  
+    const duration = songList[currentSongIndex].duration;  
     songList[currentSongIndex].currentTime = percentage * duration;
   }
   
-  const volumeChange = (e) => {
+const volumeChange = (e) => {
     const widthF = volumeBarFront.offsetWidth;
     const widthB = volumeContainer.offsetWidth;
     const clickX = e.offsetX;
@@ -252,16 +287,16 @@ const durTime = (e) => {
 		 	Math.floor(x);
 		 	sec_d = sec_d <10 ? '0'+sec_d:sec_d;
 		 }
-	} 
+        } 
+        
+        
+        get_sec_d (duration);
+        
+        // change duration DOM
+        remainingTime.innerHTML = min_d +':'+ sec_d;
+    }
+////Music Player End----------------------------------------------------------------------------------------------------------------
     
-	
-	get_sec_d (duration);
-
-	// change duration DOM
-	remainingTime.innerHTML = min_d +':'+ sec_d;
-}
-
-
 const optionsB = {
     method: 'GET',
 	headers: {
@@ -310,7 +345,6 @@ window.onload = () => {
     /////Music Player^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 }
 
-////Music Player End----------------------------------------------------------------------------------------------------------------
 ////Search Function Start-----------------------------------------------------------------------------------------------------------
 const showHideSearch = () =>{
     searchBtn.classList.toggle("d-none");
@@ -352,6 +386,7 @@ const showUser1 = ()=>{
     window.onload = ()=>{
         getAlbum();
         /////Music PlayerVVVVVVVVVVVVVVVVVVVV
+        repeatBtn.addEventListener("click", repeatClick);
         playBtn.addEventListener("click", playerClick);
         pauseBtn.addEventListener("click", playerClick);
         searchBtn.addEventListener("click", showHideSearch);
