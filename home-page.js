@@ -367,7 +367,7 @@ const makeSmallCards = (r,n=14) => {
 
             </div>
             <div class="col-8 d-flex">
-              <p class=".text-light align-self-center text-white my-0"> <a href="album-page.html?album-id=${album.id}"> ${album.title}</a></p>
+              <p class=".text-light align-self-center text-white my-0"> <a href="album-page.html?album-id=${album.album.id}&artist-id=${album.artist.id}"> ${album.title}</a></p>
             </div>
         </div>
     </div>`   
